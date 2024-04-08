@@ -77,15 +77,22 @@ export default function Footer() {
         </Box>
         <Container as={Stack} maxW={"6xl"} pt={10} pb={2}>
           <SimpleGrid
-            columns={{ base: 1, md: 2, lg:4 }}
+            columns={{ base: 1, md: 2, lg: 4 }}
             // spacing={8}
             spacingY="8px"
           >
             {/* <Stack align={"flex-start"} color="brand.900"> */}
 
             {/* <SimpleGrid columns={{ base: 1, md: 3 }}> */}
-            <Stack align={"flex-start"} color="text.300">
-              <ListHeader style={{ color: "#436131" }}>Quick Links</ListHeader>
+            <Stack color="text.300">
+              <Stack
+                ml={{ md: "50%" }}
+                align={{ md: "flex-start", base: "center" }}
+              >
+                <ListHeader style={{ color: "text.500" }}>
+                  Quick Links
+                </ListHeader>
+              </Stack>
               <Link
                 textDecoration="none"
                 _hover={{ color: "text.500" }}
@@ -302,9 +309,8 @@ export default function Footer() {
             </Stack>
             {/* </SimpleGrid> */}
             {/* </Stack> */}
-          
-            
-              {/* <Stack>
+
+            {/* <Stack>
                 <ListHeader>Connect With Us</ListHeader>
                 <Flex
                   gap="3"
@@ -348,9 +354,11 @@ export default function Footer() {
                   </Link>
                 </Flex>
               </Stack> */}
-          
-            <Stack align={"flex-start"} color="text.300" mt={{ md: 3 }}>
-              <ListHeader align={"flex-start"}>Customer Support</ListHeader>
+
+            <Stack color="text.300" mt={{ md: 3 }}>
+              <Stack align={{ md: "flex-start", base: "center" }}>
+                <ListHeader gap={"3"}>Customer Support</ListHeader>
+              </Stack>
               <Link
                 textDecoration="none"
                 _hover={{ color: "text.500" }}
@@ -384,14 +392,17 @@ export default function Footer() {
               </Link>
             </Stack>
             <Stack mt={{ md: 3 }} align={"center"}>
-             
               {/* </Stack>
 
             <Stack align={"flex-start"} gap={"3"} ml={{ lg: 10 }} color="brand.900"> */}
               <ListHeader align={"flex-start"} marginBottom={5}>
                 We Accepts Payments via
               </ListHeader>
-              <Image src={"https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/footer/payment method.png hnghngh.png"} />
+              <Image
+                src={
+                  "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/footer/payment method.png hnghngh.png"
+                }
+              />
               {/* <ListHeader>Download App</ListHeader>
               <Link
                 target="blank"

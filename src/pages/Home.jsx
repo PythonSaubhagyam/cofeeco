@@ -62,45 +62,45 @@ const cofeecoCategories = [
 const newArrival = [
   {
     image1: require("../assets/home/Arjuna_coffee.jpg"),
-    id: 1543
+    id: 1543,
   },
   {
     image1: require("../assets/home/coffee_year_3.jpg"),
-    id: 1544
+    id: 1544,
   },
   {
     image1: require("../assets/home/methi_coffee.jpg"),
-    id: 1546
+    id: 1546,
   },
   {
     image1: require("../assets/home/moringa_coffee.jpg"),
-    id: 1547
+    id: 1547,
   },
   {
     image1: require("../assets/home/parijat_coffee.jpg"),
-    id: 1548
+    id: 1548,
   },
   {
     image1: require("../assets/home/turmeric_coffee.jpg"),
-    id: 1549
+    id: 1549,
   },
 ];
 const cofeecoProduct = [
   {
     image1: require("../assets/home/coffee_month_7.jpg"),
-    id: 1168
+    id: 1168,
   },
   {
     image1: require("../assets/home/coffee_month_8.jpg"),
-    id: 1167
+    id: 1167,
   },
   {
     image1: require("../assets/home/coffee_year_2.jpg"),
-    id: 1165
+    id: 1165,
   },
   {
     image1: require("../assets/home/coffee_month_10.jpg"),
-    id: 1161
+    id: 1161,
   },
   {
     image1: require("../assets/home/coffee_year_1.jpg"),
@@ -112,23 +112,23 @@ const cofeecoProduct = [
 const bestSeller = [
   {
     image1: require("../assets/home/coffee_month_12.jpg"),
-    id: 1166
+    id: 1166,
   },
   {
     image1: require("../assets/home/coffee_month_9.jpg"),
-    id: 1169
+    id: 1169,
   },
   {
     image1: require("../assets/home/super_men.jpg"),
-    id: 1544
+    id: 1544,
   },
   {
     image1: require("../assets/home/coffee_year_3.jpg"),
-    id: 1170
+    id: 1170,
   },
   {
     image1: require("../assets/home/super_nutrition.jpg"),
-    id: 1171
+    id: 1171,
   },
   {
     image1: require("../assets/home/women.jpg"),
@@ -138,7 +138,7 @@ const cocoaPower = [
   {
     image1: "./cocoa Super kids.jpg.png",
     name: "COCOA Super - Kids ",
-    id: 1168
+    id: 1168,
   },
   {
     image1: "./cocoa Super Man.jpg.png",
@@ -155,10 +155,9 @@ const cocoaPower = [
     name: "COCOA Super - Nutrition ",
     id: 1170,
   },
-
 ];
 
-console.log("cocoaPower", cocoaPower)
+console.log("cocoaPower", cocoaPower);
 const Licences = [
   {
     src: require("../assets/home/fassai 2.png"),
@@ -184,7 +183,6 @@ const Licences = [
     src: require("../assets/home/spices board.jpg"),
     alt: "Shishu veda",
   },
-
 ];
 const imageInfo = [
   {
@@ -278,8 +276,7 @@ export default function Home() {
   async function getNewArrival() {
     const response = await client.get("newarrival/list");
     if (response) {
-
-      setNewArrival(response.data.data)
+      setNewArrival(response.data.data);
     }
     setLoading(false);
   }
@@ -287,7 +284,7 @@ export default function Home() {
   async function getMustTry() {
     const response = await client.get("musttry/list");
     if (response) {
-      setMustTry(response.data.data)
+      setMustTry(response.data.data);
     }
     setLoading(false);
   }
@@ -295,8 +292,8 @@ export default function Home() {
   async function getBestSeller() {
     const response = await client.get("bestofalltime/list");
     if (response) {
-      console.log(response.data)
-      setBestSeller(response.data.data)
+      console.log(response.data);
+      setBestSeller(response.data.data);
     }
     setLoading(false);
   }
@@ -387,7 +384,6 @@ export default function Home() {
         products={MustTry}
       />
 
-
       <ProductListSectionHome
         title="Best Seller Of All Time"
         loading={loading}
@@ -434,7 +430,6 @@ export default function Home() {
         title="COCOA Product"
         loading={loading}
         products={cocoaPower}
-
       />
 
       <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
@@ -491,7 +486,6 @@ export default function Home() {
         </SimpleGrid>
       </Container>
       <Container my={9} maxW={{ base: "100vw", md: "container.xl" }}>
-
         <Box
           w="100%"
           backgroundSize="100%"
@@ -504,7 +498,6 @@ export default function Home() {
             mx="auto"
             align={"center"}
             mt={3}
-
           >
             OUR CERTIFICATIONS & AWARDS
           </Heading>
@@ -564,7 +557,6 @@ export default function Home() {
             base: "repeat(1, 1fr)",
             md: "repeat(3, 1fr)",
             lg: "repeat(6, 1fr)",
-
           }}
           gap={6}
           my={10}
@@ -576,7 +568,6 @@ export default function Home() {
             </GridItem>
           ))}
         </Grid>
-
 
         <Grid
           templateColumns={{
@@ -610,7 +601,6 @@ export default function Home() {
                     // Note the corrected syntax here
                   }}
                 />
-
               </Flex>
             </GridItem>
           ))}
@@ -634,7 +624,9 @@ export default function Home() {
         </Box>
         <Box display={"flex"} justifyContent={"center"}>
           <LazyLoadImage
-            src={require("../assets/home/Map-Yl1Weys_.webp")}
+            src={
+              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/Map.webp"
+            }
             w={{ base: "100%", md: "100%" }}
             alt=""
             py={4}

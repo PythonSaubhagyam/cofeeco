@@ -1,15 +1,17 @@
 import {
-    Container,
-    Card,
-    Image,
-    Stack,
-    CardBody,
-    Heading,
-    Text,
-    CardFooter,
-    Button,
-    LinkBox,
-    LinkOverlay,
+  Container,
+  Card,
+  Image,
+  Stack,
+  CardBody,
+  Heading,
+  Text,
+  CardFooter,
+  Button,
+  LinkBox,
+  LinkOverlay,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 
 const ReadMorePost = ({ postDetails }) => {
@@ -20,34 +22,43 @@ const ReadMorePost = ({ postDetails }) => {
         overflow="hidden"
         boxShadow={"none"}
       >
-        <Image
-          // objectFit="contain"
-          maxW={{ base: "100%", sm: "500px" }}
-          h={{ base: "100%", sm: "300px" }}
-          src={postDetails.image}
-          alt={postDetails.title}
-          border={"4px"}
-          borderColor={"text.500"}
-        />
-
-        <Stack ps={{ base: 0, lg: 3 }}>
-          <CardBody p={{ base: 2, lg: 4 }} pt={4}>
-            <Heading fontWeight={500} color="text.300"  size="lg">{postDetails.title}</Heading>
-            <Text textAlign={"justify"} py="2">{postDetails.content}</Text>
-          </CardBody>
-
-          <CardFooter mt={{ base: 0, lg: 2 }} px={{ base: 2, lg: 3 }}>
+        <Grid
+          templateColumns={{
+            md: "repeat(2, 1fr)",
+            base: "repeat(1, 1fr)",
+          }}
+          gap={8}
+        >
+          <GridItem>
+            <Image
+              src={postDetails.image}
+              alt={postDetails.title}
+              border={"4px"}
+              borderColor={"text.500"}
+            />
+          </GridItem>
+          <GridItem>
+            <Heading fontWeight={"600"} color="text.500" size="lg">
+              {postDetails.title}
+            </Heading>
+            <Text textAlign={"justify"} fontSize={14} py={6}>
+              {postDetails.content}
+            </Text>
             <LinkBox
-               as={Button}
-               variant="outline"
-               color="brand.500"
-               borderColor={"text.500"}
-               _hover={{ textDecoration: "none",bgColor:"text.500",color:"white" }}
+              as={Button}
+              variant="outline"
+              color="brand.500"
+              borderColor={"text.500"}
+              _hover={{
+                textDecoration: "none",
+                bgColor: "text.500",
+                color: "white",
+              }}
             >
               <LinkOverlay href={postDetails.href}>Read More</LinkOverlay>
             </LinkBox>
-          </CardFooter>
-        </Stack>
+          </GridItem>
+        </Grid>
       </Card>
     </Container>
   );
