@@ -14,7 +14,8 @@ import {
   Button,
   useToast,
   Box,
-  Image
+  Image,
+  useBreakpointValue
 } from "@chakra-ui/react";
 import client from "../setup/axiosClient";
 import { AsyncSelect } from "chakra-react-select";
@@ -38,6 +39,7 @@ export default function ContactUs() {
   const [callingCode, setCallingCode] = useState("");
   const toast = useToast();
   const loginInfo = checkLogin();
+  const width = useBreakpointValue({md:"340px",base:"300px"})
   useEffect(() => {
     getCountries(); // eslint-disable-next-line
   }, []);
@@ -124,8 +126,8 @@ export default function ContactUs() {
       <Container maxW="container.xl">
         <BreadCrumbCom second={"Contact Us"} secondUrl={"/contact-us"} />
       </Container>
-      <Container maxW={"container.xl"} py={8} px={0} position="relative">
-        <Image src="https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/organic-living/contact.jpg" />
+      <Container  maxW={"container.xl"} py={8} px={0} position="relative">
+        <Image w={"100%"} src="https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/organic-living/contact.jpg" />
 
         <Text
           pb={2}
@@ -253,8 +255,8 @@ export default function ContactUs() {
               chakraStyles={{
                 inputContainer: (provided) => ({
                   ...provided,
-                  maxWidth: "340px",
-                  minWidth: "340px",
+                  maxWidth:width,
+                  minWidth:width,
                 }),
               }}
               variant={"outline"}
