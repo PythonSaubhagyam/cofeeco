@@ -168,7 +168,7 @@ export default function Carousel({
                     : {}
                 }
                 //objectFit="fit"
-                w="100%"
+                //w="100%"
                 //h={{ base: "100%", md: `${desktopHeight}px` }}
               ></Image>
             )}

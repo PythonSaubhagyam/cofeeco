@@ -317,7 +317,7 @@ export default function Home() {
         {loading === true ? (
           <Skeleton h={489}></Skeleton>
         ) : (
-          <Carousel banners={banners} />
+          <Carousel fullWidth={"100%"} banners={banners} />
         )}
       </Container>
 
@@ -571,7 +571,7 @@ export default function Home() {
         >
           {Licences.map((data) => (
             <GridItem mx={"auto"}>
-              <Image  src={data.src} boxSize={data.size} />
+              <Image  src={data.src} boxSize={{lg:data.size,base:120}} />
             </GridItem>
           ))}
         </Grid>
