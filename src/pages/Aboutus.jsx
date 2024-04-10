@@ -15,7 +15,7 @@ const Aboutus = () => {
       </Container>
       <Container maxW={"container.xl"} mb={4} px={0}>
         <Image src={require("../assets/aboutus/about_us.jpg")} />
-        <Flex flexDirection={"column"} gap={3} px={20} py={10}>
+        <Flex flexDirection={"column"}  gap={3} px={{md:"10%",base:10}} py={10}>
           <Box
             fontWeight={"600"}
             color="text.300"
@@ -25,7 +25,7 @@ const Aboutus = () => {
             <i>Co Fee Co has Dakshin Bharatiya origins:- </i>
           </Box>
 
-          <Box maxW={"6xl"} color={"text.300"} textAlign={"justify"}>
+          <Box  color={"text.300"} textAlign={"justify"}>
             Our blends are made with some of the finest, most authentic coffee
             beans sourced from the Southern regions of Bharat.Ever since Sufi
             Saint Baba Budan brought the first 7 coffee beans from Arabia to

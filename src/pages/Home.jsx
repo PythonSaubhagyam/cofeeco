@@ -162,26 +162,32 @@ const Licences = [
   {
     src: require("../assets/home/fassai 2.png"),
     alt: "Gir Gauveda",
+    
   },
   {
     src: require("../assets/home/apeda.jpg"),
     alt: "So Good",
+    
   },
   {
     src: require("../assets/home/coffee board.jpg"),
     alt: "Spices Board",
+    
   },
   {
     src: require("../assets/home/msme.jpg"),
     alt: "Himalayan Mountain",
+    
   },
   {
     src: require("../assets/home/lPCR_logo.jpg"),
     alt: "CoffeeCo",
+    size:160
   },
   {
     src: require("../assets/home/spices board.jpg"),
     alt: "Shishu veda",
+    
   },
 ];
 const imageInfo = [
@@ -362,7 +368,7 @@ export default function Home() {
       <Container mb={5} px={0} maxW={"container.xl"} centerContent>
         <LazyLoadImage
           src={
-            "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/03.jpg"
+           require("../assets/home/coffecco_certificate.jpg")
           }
           alt=""
           style={{
@@ -373,19 +379,19 @@ export default function Home() {
       </Container>
 
       <ProductListSectionHome
-        title="New Arrival In COFEE CO"
+        title="New Arrivals: COFEE CO"
         loading={loading}
         products={newArrival}
       />
 
       <ProductListSectionHome
-        title="Must Try : Co Fee Co Products"
+        title="Must Try: Co Fee Co Products"
         loading={loading}
         products={MustTry}
       />
 
       <ProductListSectionHome
-        title="Best Seller Of All Time"
+        title="All Time Best Sellers"
         loading={loading}
         products={BestSeller}
       />
@@ -494,7 +500,7 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            size="lg"
+            fontSize={{md:33,base:24}}
             mx="auto"
             align={"center"}
             mt={3}
@@ -503,8 +509,7 @@ export default function Home() {
           </Heading>
         </Box>
         <Text my={5} textAlign={"center"} color="text.300">
-          We are committed to quality and each of our facility is independently
-          certified by an industry-accredited agency.
+        We are committed to quality and each of our facilities is independently certified by an industry-accredited agency.
         </Text>
         <Flex
           justifyContent="space-evenly"
@@ -543,13 +548,13 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            size="lg"
+            fontSize={{md:33,base:24}}
             mx="auto"
             align={"center"}
             my={5}
             pb={"10px"}
           >
-            LICENCES & AFFILIATION
+            LICENSES & AFFILIATIONS
           </Heading>
         </Box>
         <Grid
@@ -560,51 +565,20 @@ export default function Home() {
           }}
           gap={6}
           my={10}
-          px={20}
+          px={{lg:"8%"}}
+          alignItems={"center"}
+          justifyContent={"center"}
         >
           {Licences.map((data) => (
-            <GridItem>
-              <Image src={data.src} />
+            <GridItem mx={"auto"}>
+              <Image  src={data.src} boxSize={data.size} />
             </GridItem>
           ))}
         </Grid>
 
-        <Grid
-          templateColumns={{
-            base: "repeat(3, 1fr)",
-            md: "repeat(3, 1fr)",
-            lg: "repeat(5,1fr)",
-          }}
-          gap={2}
-          my={6}
-          mx={{ md: "15%", base: 3 }}
-        >
-          {imageInfo?.map((data) => (
-            <GridItem>
-              <Flex
-                flexDirection={"column"}
-                alignItems={"center"}
-                justifyContent={"center"}
-              >
-                <LazyLoadImage
-                  cursor={"pointer"}
-                  transition="all 1s ease"
-                  _hover={{
-                    transform: "scale(1.25)",
-                  }}
-                  src={data.src}
-                  alt={data.name}
-                  style={{
-                    opacity: 1,
-                    transition: "opacity 0.7s",
-                    width: "100px",
-                    // Note the corrected syntax here
-                  }}
-                />
-              </Flex>
-            </GridItem>
-          ))}
-        </Grid>
+       <Container maxW={"container.xl"} pt={5} pb={8} centerContent>
+        <Image w={{md:"70%"}} src={require("../assets/home/cofeeco.jpg")} />
+        </Container>
         <Box
           w="100%"
           backgroundSize="100%"
@@ -613,13 +587,14 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            size="lg"
+            // /size={{md:"lg",base:"md"}}
+            fontSize={{md:33,base:22}}
             mx="auto"
             align={"center"}
             my={7}
             pb={"10px"}
           >
-            SERVING TO THE COUNTRIES
+            OUR SERVICES ARE AVAILABLE IN
           </Heading>
         </Box>
         <Box display={"flex"} justifyContent={"center"}>

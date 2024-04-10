@@ -56,6 +56,7 @@ export default function Checkout({ getDetails }) {
 
   const [addresses, setAddresses] = useState([]);
   const [formData, setFormData] = useState(initialFormData);
+  console.log("formData",formData)
   const [showAll, setShowAll] = useState(false);
   const [loading, setLoading] = useState(true);
   const [showAllDeliveryOptions, setShowAllDeliveryOptions] = useState(

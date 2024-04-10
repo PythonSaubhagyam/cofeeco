@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
   return (
     <Card
-      w={{ base: "80vw", sm: "3xs", lg: "2xspx" }}
+      w={{ base: "80vw", sm: "3xs", lg: "2xs" }}
       border="1px"
       borderColor="brand.100"
       borderRadius={"lg"}
