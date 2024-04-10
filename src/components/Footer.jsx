@@ -89,14 +89,14 @@ export default function Footer() {
                   Quick Links
                 </ListHeader>
               </Stack>
-              <Link
+              {/* <Link
                 textDecoration="none"
                 _hover={{ color: "text.500" }}
                 as={RouterLink}
                 to={"/"}
               >
                 Home
-              </Link>
+              </Link> */}
               <Link
                 textDecoration="none"
                 _hover={{ color: "text.500" }}
@@ -120,6 +120,22 @@ export default function Footer() {
                 to={"/about-us"}
               >
                 About Us
+              </Link>
+              <Link
+                textDecoration="none"
+                _hover={{ color: "text.500" }}
+                as={RouterLink}
+                to={"/store-locator"}
+              >
+                Store Locator
+              </Link>
+              <Link
+                textDecoration="none"
+                _hover={{ color: "text.500" }}
+                as={RouterLink}
+                to={"/contact-us"}
+              >
+                Contact Us
               </Link>
               {/* <Link
                 textDecoration="none"
@@ -173,22 +189,7 @@ export default function Footer() {
                 Contact Us
               </Link> */}
 
-              <Link
-                textDecoration="none"
-                _hover={{ color: "text.500" }}
-                as={RouterLink}
-                to={"/store-locator"}
-              >
-                Store Locator
-              </Link>
-              <Link
-                textDecoration="none"
-                _hover={{ color: "text.500" }}
-                as={RouterLink}
-                to={"/contact-us"}
-              >
-                Contact Us
-              </Link>
+            
               <Link
                 textDecoration="none"
                 _hover={{ color: "text.500" }}
