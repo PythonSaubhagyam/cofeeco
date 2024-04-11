@@ -317,7 +317,7 @@ export default function Home() {
         {loading === true ? (
           <Skeleton h={489}></Skeleton>
         ) : (
-          <Carousel fullWidth={"100%"} banners={banners} />
+          <Carousel  banners={banners} />
         )}
       </Container>
 
@@ -359,7 +359,7 @@ export default function Home() {
           borderRadius={"10px"}
           borderColor={"brand.500"}
           _hover={{ bgColor: "brand.500", color: "white" }}
-          mx={"45%"}
+          mx={{lg:"45%",base:"33%",md:"42%"}}
         >
           Read more
         </Button>
@@ -571,7 +571,7 @@ export default function Home() {
         >
           {Licences.map((data) => (
             <GridItem mx={"auto"}>
-              <Image  src={data.src} boxSize={{lg:data.size,base:120}} />
+              <Image  src={data.src} boxSize={{base:130}} />
             </GridItem>
           ))}
         </Grid>

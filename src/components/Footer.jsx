@@ -89,14 +89,14 @@ export default function Footer() {
                   Quick Links
                 </ListHeader>
               </Stack>
-              {/* <Link
+              <Link
                 textDecoration="none"
                 _hover={{ color: "text.500" }}
                 as={RouterLink}
                 to={"/"}
               >
                 Home
-              </Link> */}
+              </Link>
               <Link
                 textDecoration="none"
                 _hover={{ color: "text.500" }}
@@ -229,6 +229,14 @@ export default function Footer() {
                 to={"/inspire-and-support"}
               >
                 Inspire & Support
+              </Link>
+              <Link
+                textDecoration="none"
+                _hover={{ color: "text.500" }}
+                as={RouterLink}
+                to={"/privacy-policy"}
+              >
+                Privacy Policy
               </Link>
             </Stack>
             {/* </SimpleGrid> */}
