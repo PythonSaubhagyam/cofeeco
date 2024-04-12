@@ -500,7 +500,7 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            fontSize={{md:33,base:24}}
+            fontSize={{md:33,base:21}}
             mx="auto"
             align={"center"}
             mt={3}
@@ -548,7 +548,7 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            fontSize={{md:33,base:24}}
+            fontSize={{md:33,base:22}}
             mx="auto"
             align={"center"}
             my={5}
@@ -588,7 +588,7 @@ export default function Home() {
           <Heading
             color="brand.500"
             // /size={{md:"lg",base:"md"}}
-            fontSize={{md:33,base:22}}
+            fontSize={{md:33,base:20}}
             mx="auto"
             align={"center"}
             my={7}
@@ -619,7 +619,7 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            size="lg"
+            fontSize={{md:33,base:22}}
             mx="auto"
             align={"center"}
             my={"5"}
