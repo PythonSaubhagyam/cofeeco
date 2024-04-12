@@ -433,7 +433,7 @@ export default function Home() {
       </Container> */}
 
       <ProductListSection
-        title="COCOA Product"
+        title="COCOA Products"
         loading={loading}
         products={cocoaPower}
       />
@@ -453,41 +453,41 @@ export default function Home() {
             <StatNumber color="text.500" fontSize={{ base: "3xl", md: "3xl" }}>
               600+
             </StatNumber>
-            <StatHelpText color="white">Natural Products</StatHelpText>
+            <StatHelpText color="gray.600">Natural Products</StatHelpText>
           </Stat>
 
           <Stat>
             <StatNumber color="text.500" fontSize={{ base: "3xl", md: "3xl" }}>
               70000+
             </StatNumber>
-            <StatHelpText color="white">Satisfied Clients</StatHelpText>
+            <StatHelpText color="gray.600">Satisfied Clients</StatHelpText>
           </Stat>
 
           <Stat>
             <StatNumber color="text.500" fontSize={{ base: "3xl", md: "3xl" }}>
               1560+
             </StatNumber>
-            <StatHelpText color="white">Cities & Towns</StatHelpText>
+            <StatHelpText color="gray.600">Cities & Towns</StatHelpText>
           </Stat>
           <Stat>
             <StatNumber color="text.500" fontSize={{ base: "3xl", md: "3xl" }}>
               7+
             </StatNumber>
-            <StatHelpText color="white">Countries</StatHelpText>
+            <StatHelpText color="gray.600">Countries</StatHelpText>
           </Stat>
 
           <Stat>
             <StatNumber color="text.500" fontSize={{ base: "3xl", md: "3xl" }}>
               14+
             </StatNumber>
-            <StatHelpText color="white">Stores</StatHelpText>
+            <StatHelpText color="gray.600">Stores</StatHelpText>
           </Stat>
 
           <Stat>
             <StatNumber color="text.500" fontSize={{ base: "3xl", md: "3xl" }}>
               11<sup>th</sup>
             </StatNumber>
-            <StatHelpText color="white">Generation of Farmers</StatHelpText>
+            <StatHelpText color="gray.600">Generation of Farmers</StatHelpText>
           </Stat>
         </SimpleGrid>
       </Container>

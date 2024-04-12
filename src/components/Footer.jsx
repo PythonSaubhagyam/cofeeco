@@ -323,7 +323,7 @@ export default function Footer() {
                 care@suryanorganic.com
               </Link>
             </Stack>
-            <Stack mt={{ md: 3 }} align={{base:"flex-start",md:"center"}}>
+            <Stack mt={{ md: 3 }} >
               {/* </Stack>
 
             <Stack align={"flex-start"} gap={"3"} ml={{ lg: 10 }} color="brand.900"> */}
@@ -331,6 +331,7 @@ export default function Footer() {
               We accept payments via
               </ListHeader>
               <Image
+                ml={{base:"-16px"}}
                 src={
                   "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/footer/payment method.png hnghngh.png"
                 }
