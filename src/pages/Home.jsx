@@ -157,26 +157,29 @@ const cocoaPower = [
   },
 ];
 
-console.log("cocoaPower", cocoaPower);
+
 const Licences = [
   {
     src: require("../assets/home/fassai 2.png"),
     alt: "Gir Gauveda",
+    size:190
     
   },
   {
     src: require("../assets/home/apeda.jpg"),
     alt: "So Good",
+    size:190
     
   },
   {
     src: require("../assets/home/coffee board.jpg"),
     alt: "Spices Board",
-    
+    size:200
   },
   {
     src: require("../assets/home/msme.jpg"),
     alt: "Himalayan Mountain",
+    size:190
     
   },
   {
@@ -187,6 +190,7 @@ const Licences = [
   {
     src: require("../assets/home/spices board.jpg"),
     alt: "Shishu veda",
+    size:200
     
   },
 ];
@@ -571,7 +575,7 @@ export default function Home() {
         >
           {Licences.map((data) => (
             <GridItem mx={"auto"}>
-              <Image  src={data.src} boxSize={{base:130}} />
+              <Image  src={data.src} boxSize={{base:130,lg:data.size}} />
             </GridItem>
           ))}
         </Grid>
