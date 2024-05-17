@@ -3,7 +3,7 @@ import BreadCrumbCom from "../components/BreadCrumbCom";
 import Navbar from "../components/Navbar";
 import { Box, Container, Flex, Image, Heading } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-const Aboutus = () => {
+const AboutUs = () => {
   let { search } = useLocation();
   const searchParams = new URLSearchParams(search);
   const IsMobileView = searchParams.get("mobile") ?? "false";
@@ -112,4 +112,4 @@ const Aboutus = () => {
   );
 };
 
-export default Aboutus;
+export default AboutUs;

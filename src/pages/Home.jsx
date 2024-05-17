@@ -157,41 +157,36 @@ const cocoaPower = [
   },
 ];
 
-
 const Licences = [
   {
     src: require("../assets/home/fassai 2.png"),
     alt: "Gir Gauveda",
-    size:190
-    
+    size: 190,
   },
   {
     src: require("../assets/home/apeda.jpg"),
     alt: "So Good",
-    size:190
-    
+    size: 190,
   },
   {
     src: require("../assets/home/coffee board.jpg"),
     alt: "Spices Board",
-    size:200
+    size: 200,
   },
   {
     src: require("../assets/home/msme.jpg"),
     alt: "Himalayan Mountain",
-    size:190
-    
+    size: 190,
   },
   {
     src: require("../assets/home/lPCR_logo.jpg"),
     alt: "CoffeeCo",
-    size:160
+    size: 160,
   },
   {
     src: require("../assets/home/spices board.jpg"),
     alt: "Shishu veda",
-    size:200
-    
+    size: 200,
   },
 ];
 const imageInfo = [
@@ -321,7 +316,7 @@ export default function Home() {
         {loading === true ? (
           <Skeleton h={489}></Skeleton>
         ) : (
-          <Carousel  banners={banners} />
+          <Carousel banners={banners} />
         )}
       </Container>
 
@@ -363,7 +358,7 @@ export default function Home() {
           borderRadius={"10px"}
           borderColor={"brand.500"}
           _hover={{ bgColor: "brand.500", color: "white" }}
-          mx={{lg:"45%",base:"33%",md:"42%"}}
+          mx={{ lg: "45%", base: "33%", md: "42%" }}
         >
           Read more
         </Button>
@@ -371,9 +366,7 @@ export default function Home() {
 
       <Container mb={5} px={0} maxW={"container.xl"} centerContent>
         <LazyLoadImage
-          src={
-           require("../assets/home/coffecco_certificate.jpg")
-          }
+          src={require("../assets/home/coffecco_certificate.jpg")}
           alt=""
           style={{
             opacity: 1,
@@ -436,15 +429,86 @@ export default function Home() {
         </Grid>
       </Container> */}
 
-      <ProductListSection
+      {/* <ProductListSection
         title="COCOA Products"
         loading={loading}
         products={cocoaPower}
-      />
+      /> */}
+
+      <Container maxW={"container.xl"}>
+        <Heading
+          color="brand.500"
+          size="lg"
+          mx="auto"
+          align={"center"}
+          mt={3}
+         
+        >
+          BLOGS
+        </Heading>
+
+        <Grid
+          templateColumns={{
+            base: "repeat(1,1fr)",
+            md: "repeat(2,1fr)",
+            lg: "repeat(4,1fr)",
+          }}
+          px={2}
+          py={3}
+          spacing="40px"
+        >
+          {blogs?.slice(0, 8).map((blog) => (
+            <GridItem key={blog.id} m={4}>
+              <Card>
+                <LinkBox h={400}>
+                  <Image
+                    src={blog.banner}
+                    w="100%"
+                    h="300px"
+                    loading="lazy"
+                    objectFit={"cover"}
+                    borderRadius={5}
+                    style={{
+                      opacity: 1,
+                      transition: "opacity 0.7s", // Note the corrected syntax here
+                    }}
+                  />
+                  <LinkOverlay
+                    _hover={{ color: "brand.500" }}
+                    href={`/blogs/${blog.id}/`}
+                  >
+                    <Heading size="sm" fontWeight={500} m={2}>
+                      {blog.title}
+                    </Heading>
+                  </LinkOverlay>
+                </LinkBox>
+                <Flex m={2} justifyContent={"space-between"}>
+                  <Text fontSize={"sm"} color="gray.500">
+                    {new Intl.DateTimeFormat("en-CA", {
+                      dateStyle: "long",
+                      timeZone: "Asia/Kolkata",
+                    }).format(new Date(blog.published_at))}
+                  </Text>
+                  <Text
+                    fontSize={"sm"}
+                    fontWeight={600}
+                    color={"brand.500"}
+                    onClick={() => navigate(`/blogs/${blog.id}/`)}
+                    cursor={"pointer"}
+                  >
+                    Read more
+                    <ChevronRightIcon />
+                  </Text>
+                </Flex>
+              </Card>
+            </GridItem>
+          ))}
+        </Grid>
+      </Container>
 
       <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
         <SimpleGrid
-          columns={[2, 3, null, 6]}
+          columns={[2, 3, null, 5]}
           px={6}
           maxW={"container.xl"}
           my={6}
@@ -487,12 +551,12 @@ export default function Home() {
             <StatHelpText color="gray.600">Stores</StatHelpText>
           </Stat>
 
-          <Stat>
+          {/* <Stat>
             <StatNumber color="text.500" fontSize={{ base: "3xl", md: "3xl" }}>
               11<sup>th</sup>
             </StatNumber>
             <StatHelpText color="gray.600">Generation of Farmers</StatHelpText>
-          </Stat>
+          </Stat> */}
         </SimpleGrid>
       </Container>
       <Container my={9} maxW={{ base: "100vw", md: "container.xl" }}>
@@ -504,7 +568,7 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            fontSize={{md:33,base:21}}
+            fontSize={{ md: 33, base: 21 }}
             mx="auto"
             align={"center"}
             mt={3}
@@ -513,7 +577,8 @@ export default function Home() {
           </Heading>
         </Box>
         <Text my={5} textAlign={"center"} color="text.300">
-        We are committed to quality and each of our facilities is independently certified by an industry-accredited agency.
+          We are committed to quality and each of our facilities is
+          independently certified by an industry-accredited agency.
         </Text>
         <Flex
           justifyContent="space-evenly"
@@ -552,7 +617,7 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            fontSize={{md:33,base:22}}
+            fontSize={{ md: 33, base: 22 }}
             mx="auto"
             align={"center"}
             my={5}
@@ -569,19 +634,22 @@ export default function Home() {
           }}
           gap={6}
           my={10}
-          px={{lg:"8%"}}
+          px={{ lg: "8%" }}
           alignItems={"center"}
           justifyContent={"center"}
         >
           {Licences.map((data) => (
             <GridItem mx={"auto"}>
-              <Image  src={data.src} boxSize={{base:130,lg:data.size}} />
+              <Image src={data.src} boxSize={{ base: 130, lg: data.size }} />
             </GridItem>
           ))}
         </Grid>
 
-       <Container maxW={"container.xl"} pt={5} pb={8} centerContent>
-        <Image w={{md:"70%"}} src={require("../assets/home/cofeeco.jpg")} />
+        <Container maxW={"container.xl"} pt={5} pb={8} centerContent>
+          <Image
+            w={{ md: "70%" }}
+            src={require("../assets/home/cofeeco.jpg")}
+          />
         </Container>
         <Box
           w="100%"
@@ -592,7 +660,7 @@ export default function Home() {
           <Heading
             color="brand.500"
             // /size={{md:"lg",base:"md"}}
-            fontSize={{md:33,base:20}}
+            fontSize={{ md: 33, base: 20 }}
             mx="auto"
             align={"center"}
             my={7}
@@ -623,7 +691,7 @@ export default function Home() {
         >
           <Heading
             color="brand.500"
-            fontSize={{md:33,base:22}}
+            fontSize={{ md: 33, base: 22 }}
             mx="auto"
             align={"center"}
             my={"5"}
