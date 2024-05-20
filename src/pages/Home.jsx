@@ -178,16 +178,16 @@ const Licences = [
     alt: "Himalayan Mountain",
     size: 190,
   },
-  {
-    src: require("../assets/home/lPCR_logo.jpg"),
-    alt: "CoffeeCo",
-    size: 160,
-  },
-  {
-    src: require("../assets/home/spices board.jpg"),
-    alt: "Shishu veda",
-    size: 200,
-  },
+  // {
+  //   src: require("../assets/home/lPCR_logo.jpg"),
+  //   alt: "CoffeeCo",
+  //   size: 160,
+  // },
+  // {
+  //   src: require("../assets/home/spices board.jpg"),
+  //   alt: "Shishu veda",
+  //   size: 200,
+  // },
 ];
 const imageInfo = [
   {
@@ -629,10 +629,10 @@ export default function Home() {
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",
-            md: "repeat(3, 1fr)",
-            lg: "repeat(6, 1fr)",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(4, 1fr)",
           }}
-          gap={6}
+          gap={5}
           my={10}
           px={{ lg: "8%" }}
           alignItems={"center"}
