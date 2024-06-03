@@ -33,6 +33,7 @@
     "dayzed": "^3.2.3",
     "dompurify": "^2.4.7",
     "dotenv": "^16.0.3",
+    "eventemitter3": "^5.0.1",
     "framer-motion": "^6.5.1",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",

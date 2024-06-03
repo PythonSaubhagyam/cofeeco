@@ -24,7 +24,7 @@ export default function ShopProductCard({
   onClick,
   displayWishlistButton = true,
 }) {
-  console.log(productDetails);
+ 
   return (
     <LinkBox
       as={Card}

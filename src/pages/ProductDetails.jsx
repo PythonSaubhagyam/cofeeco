@@ -85,6 +85,7 @@ export default function ProductDetails() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const toast = useToast();
+  
   // const maxWidth = useBreakpointValue({ base: "100%", lg: "container.xl" });
   // const boxWidth = useBreakpointValue({ base: "100%", lg: "75%" });
   const loginInfo = checkLogin();
@@ -439,8 +440,9 @@ export default function ProductDetails() {
             <Box pr={10} mx={8}>
               <Skeleton isLoaded={!loading}>
                 <Box
-                  whiteSpace={"pre-line"}
-                  lineHeight={1.5}
+                   //whiteSpace={"pre-line"}
+                  //whiteSpace={"normal"}
+                   lineHeight={1.8}
                   textAlign="justify"
                   dangerouslySetInnerHTML={{
                     // __html: dompurify.sanitize(productData?.description),
