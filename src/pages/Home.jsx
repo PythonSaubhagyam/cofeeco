@@ -36,6 +36,7 @@ import { useNavigate, NavLink as RouterLink } from "react-router-dom";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Testimonials from "../components/testimonials";
 import ProductListSectionHome from "../components/ProductListSectionHome";
+import ScrollToTop from "../components/ScrollToTop";
 
 const cofeecoCategories = [
   {
@@ -634,7 +635,7 @@ export default function Home() {
           }}
           gap={5}
           my={10}
-          px={{ lg: "8%" }}
+          px={{ lg: "18%" }}
           alignItems={"center"}
           justifyContent={"center"}
         >
@@ -714,6 +715,7 @@ export default function Home() {
           />
         </Container>
       </Container>
+      <ScrollToTop/>
       <Footer />
       {/* </>
       )} */}
