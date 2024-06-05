@@ -67,10 +67,18 @@ import { debounce } from "lodash";
 import CartEmitter from "./EventEmitter";
 
 const Links = [
-  // {
-  //   name: "Consult Our Vaidya",
-  //   location: "/consult-our-vaidya",
-  // },
+  {
+    name: "SOSE Elite",
+    location: "/subscription-plans",
+  },
+  {
+    name: "Gift Voucher",
+    location: "/gift-voucher",
+  },
+  {
+    name: "Consult Our Vaidya",
+    location: "/consult-our-vaidya",
+  },
   {
     name: "About us",
     location: "/about-us",
@@ -1096,7 +1104,7 @@ export default function Navbar() {
           >
             <Flex
               as={"nav"}
-              gap={{ md: 6, lg: 4, xl: 5 }}
+              gap={{ md: 6, lg: 4, xl: 4 }}
               display={{ base: "flex", lg: "flex" }}
               fontSize={{ lg: 11, xl: 14, md: 9 }}
               alignItems={"center"}

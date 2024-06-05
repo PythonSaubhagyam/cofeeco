@@ -368,9 +368,9 @@ export default function ProductDetails() {
                       <Link
                         pt={0.5}
                         //pl={2}
-                        fontWeight={400}
+                        fontWeight={500}
                         fontSize={"lg"}
-                        color={"dimgray"}
+                        color={"#75512a"}
                         textDecoration="none"
                         _hover={{ color: "brand.500" }}
                         //as={RouterLink}

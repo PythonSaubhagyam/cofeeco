@@ -12,28 +12,42 @@ import { MdPlayArrow } from "react-icons/md";
 import React, { useEffect, useState } from "react";
 import CartEmitter from "./EventEmitter";
 import { useLocation, useNavigate } from "react-router-dom";
+import client from "../setup/axiosClient";
+import CheckOrSetUDID from "../utils/checkOrSetUDID";
+import checkLogin from "../utils/checkLogin";
 
 const CartPopUp = () => {
   const [CartCount, setCartCount] = useState(
-    localStorage.getItem("cart_counter")
+    localStorage.getItem("cart_counter") ?? 0
   );
-  
-  const [total, setTotal] = useState((localStorage.getItem("product_total") === null ||localStorage.getItem("product_total") === undefined) ? 0 : localStorage.getItem("product_total")  );
+  const checkOrSetUDIDInfo = CheckOrSetUDID();
+  const loginInfo = checkLogin();
+
+  let headers = { visitor: checkOrSetUDIDInfo?.visitor_id };
+
+  if (loginInfo.isLoggedIn === true) {
+    headers = { Authorization: `token ${loginInfo?.token}` };
+  }
+
+  const [total, setTotal] = useState(
+    localStorage.getItem("product_total") === null ||
+      localStorage.getItem("product_total") === undefined
+      ? 0
+      : localStorage.getItem("product_total")
+  );
+
   useEffect(() => {
-    const updateCartCount = (newQuantity) => {
-      setCartCount(newQuantity);
-    };
-
-    CartEmitter.on("updateCartCount", updateCartCount);
-
-    return () => {
-      CartEmitter.off("updateCartCount", updateCartCount);
-    };
-  }, []);
-
-  useEffect(() => {
-    const updateProductTotal = (newQuantity) => {
-      setTotal(newQuantity);
+    const updateProductTotal = async () => {
+      const cartRes = await client.get("/cart/", {
+        headers: headers,
+      });
+      if (cartRes.data.status === true) {
+        console.log(cartRes.data.data.cart_counter);
+        console.log(cartRes.data.data.final_total);
+        setCartCount(cartRes.data.data.cart_counter);
+        localStorage.setItem("product_total", cartRes.data.data.final_total);
+        setTotal(cartRes.data.data.final_total);
+      }
     };
 
     CartEmitter.on("updateProductTotal", updateProductTotal);
@@ -42,6 +56,7 @@ const CartPopUp = () => {
       CartEmitter.off("updateProductTotal", updateProductTotal);
     };
   }, []);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -64,15 +79,19 @@ const CartPopUp = () => {
           bgColor={"brand.500"}
           color={"#fff"}
           textAlign={"center"}
-          py={2}
+          py={3}
           fontWeight={400}
           borderTopRightRadius={"20px"}
           borderTopLeftRadius={"20px"}
-          w={{ md: 500, base: "100%" }}
+          w={{ md: 600, base: "100%" }}
           opacity={0.9}
           fontSize={13}
         >
-         SOSE Elite now for complimentary delivery and elevate your Shopping experience!
+          Upgrade to{" "}
+          <Link href="/subscription-plans" fontWeight={700} fontSize={"sm"}>
+            SOSE Elite
+          </Link>{" "}
+          now for complimentary delivery and elevate your Shopping experience!
         </Box>
         <Flex
           justifyContent={"space-between"}
@@ -80,13 +99,13 @@ const CartPopUp = () => {
           py={2}
           backgroundColor={"#6E5A46"}
           color={"#fff"}
-          w={{ md: 500, base: "100%" }}
+          w={{ md: 600, base: "100%" }}
           opacity={0.9}
         >
           <Flex gap={2} alignItems={"center"}>
             <BsFillCartFill fontSize={"1.4rem"} />
             <Text fontSize={17} mt={1}>
-              {CartCount ?? 0}
+              {CartCount}
               {"  "}items
             </Text>
           </Flex>
@@ -107,8 +126,6 @@ const CartPopUp = () => {
                 fontSize={"1.5rem"}
               />
             </Text>
-
-           
           </Flex>
         </Flex>
       </Container>
