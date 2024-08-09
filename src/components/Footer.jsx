@@ -16,6 +16,9 @@ import { FiInstagram } from "react-icons/fi";
 import { useNavigate, NavLink as RouterLink } from "react-router-dom";
 import { IoMail } from "react-icons/io5";
 import CartPopUp from "./CartPopUp";
+import checkLogin from "../utils/checkLogin";
+import CheckOrSetUDID from "../utils/checkOrSetUDID";
+
 const ListHeader = ({ children }) => {
   return (
     <Text fontWeight={"500"} fontSize={"lg"} mb={1} color="brand.100">
@@ -27,7 +30,13 @@ const ListHeader = ({ children }) => {
 export default function Footer() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   const [isMobiles, setIsMobiles] = useState(window.innerWidth <= 600);
+  const loginInfo = checkLogin();
+  const checkOrSetUDIDInfo = CheckOrSetUDID();
+  let headers = { visitor: checkOrSetUDIDInfo.visitor_id };
 
+  if (loginInfo.isLoggedIn === true) {
+    headers = { Authorization: `token ${loginInfo.token}` };
+  }
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
@@ -56,7 +65,8 @@ export default function Footer() {
             fontSize={{ base: "sm", lg: "md" }}
             className="scrolling-text"
           >
-            For deliveries in the USA, UAE, UK, Singapore, Canada and Australia, email us at {" "}
+            For deliveries in the USA, UAE, UK, Singapore, Canada and Australia,
+            email us at{" "}
             <Link
               target="_blank"
               href="mailto:export@suryanorganic.com"
@@ -190,7 +200,6 @@ export default function Footer() {
                 Contact Us
               </Link> */}
 
-            
               <Link
                 textDecoration="none"
                 _hover={{ color: "text.500" }}
@@ -324,15 +333,13 @@ export default function Footer() {
                 care@suryanorganic.com
               </Link>
             </Stack>
-            <Stack mt={{ md: 3 }} >
+            <Stack mt={{ md: 3 }}>
               {/* </Stack>
 
             <Stack align={"flex-start"} gap={"3"} ml={{ lg: 10 }} color="brand.900"> */}
-              <ListHeader  marginBottom={5}>
-              We accept payments via
-              </ListHeader>
+              <ListHeader marginBottom={5}>We accept payments via</ListHeader>
               <Image
-                ml={{base:"-16px"}}
+                ml={{ base: "-16px" }}
                 src={
                   "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/footer/payment method.png hnghngh.png"
                 }
@@ -356,7 +363,8 @@ export default function Footer() {
             Copyright © Suryan Organic
           </Text>
         </Box>
-      </Container> <CartPopUp />
+      </Container>
+      {loginInfo.isLoggedIn && <CartPopUp />}
     </>
   );
 }
