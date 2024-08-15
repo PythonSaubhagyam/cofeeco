@@ -1076,7 +1076,7 @@ export default function Navbar() {
                       color: "brand.900",
                     }}
                     fontWeight={500}
-                    fontSize={{ md: "16px" }}
+                    fontSize={{ md: "14px" }}
                     onClick={() => navigate("/login")}
                   >
                     Login
@@ -1089,7 +1089,7 @@ export default function Navbar() {
                       color: "brand.900",
                     }}
                     fontWeight={500}
-                    fontSize={{ md: "16px" }}
+                    fontSize={{ md: "14px" }}
                   >
                     Sign up
                   </Link>
@@ -1098,7 +1098,7 @@ export default function Navbar() {
             </Flex>
           </GridItem>
           <GridItem
-            colSpan={7}
+            colSpan={9}
             display={"flex"}
             // style={{ borderBottom: "0.5px solid #b7b7b7" }}
           >
@@ -1226,7 +1226,7 @@ export default function Navbar() {
             </Flex>
           </GridItem>
           <GridItem
-            colSpan={4}
+            colSpan={2}
             display={"flex"}
             justifyContent={"end"}
             alignItems={"center"}
