@@ -4,6 +4,8 @@ import ReadMorePost from "../components/ReadMorePost";
 import { Box, Container, Text,Image } from "@chakra-ui/react";
 import BreadCrumbCom from "../components/BreadCrumbCom";
 import ScrollToTop from "../components/ScrollToTop";
+import { useLocation } from "react-router-dom";
+
 
 const Posts = [
   {
@@ -81,9 +83,15 @@ const Posts = [
 ];
 
 export default function InspireSupport() {
+  
+  let { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+   const IsMobileView = searchParams.get("mobile") ?? "false";
+
   return (
     <>
-      <Navbar />
+     {IsMobileView !== "true" && <Navbar />}
+
 
       <Container maxW="container.xl">
         <BreadCrumbCom
@@ -100,7 +108,9 @@ export default function InspireSupport() {
         ))}
       </Container>
       <ScrollToTop/>
-      <Footer />
+      {IsMobileView !== "true" && <Footer />}
+
+
     </>
   );
 }
