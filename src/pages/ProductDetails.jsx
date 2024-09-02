@@ -179,7 +179,7 @@ export default function ProductDetails() {
 
   
   const modifiedDescription = productData && productData.description
-  .replace(/<h6>/g, '<h6 style="color:#2C4C03; font-weight:bold; font-size:18px;">');
+  .replace(/<h6>/g, '<h6 style="color:#A05D26; font-weight:bold; font-size:18px;">');
   async function handleSubmit(e) {
     e.preventDefault();
     try {
