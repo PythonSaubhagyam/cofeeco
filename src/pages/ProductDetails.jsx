@@ -351,7 +351,7 @@ export default function ProductDetails() {
                             base: "14px",
                             lg: "18px",
                           }}
-                          color={"black"}
+                          color={"#A05D26"}
                           fontWeight={"500"}
                         >
                           Brand :{"  "}
@@ -384,7 +384,7 @@ export default function ProductDetails() {
                       //pl={2}
                       fontWeight={500}
                       fontSize={"lg"}
-                      color={"brand.500"}
+                      color={"#A05D26"}
                       textDecoration="none"
                       _hover={{ color: "text.500" }}
                       //as={RouterLink}
@@ -405,7 +405,7 @@ export default function ProductDetails() {
                     {noOfReviews && noOfReviews !== 0 && (
                       <Text
                         as="span"
-                        color="gray.500"
+                        color="#A05D26"
                         fontSize={"lg"}
                         pl={2}
                         align={"center"}
@@ -457,7 +457,7 @@ export default function ProductDetails() {
                         lg: "18px",
                       }}
                       // color={"brand.500"}
-                      color={"black"}
+                      color={"#A05D26"}
                       fontWeight={"600"}
                     >
                       {productData?.benefits?.length > 0 && "Benefits :-"}
