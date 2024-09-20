@@ -128,54 +128,99 @@ export default function ProductDetails() {
 
   useEffect(() => {
     getProductDetails(); // eslint-disable-next-line
+    getrelated()
+    getother()
+    getrecentlyviewed()
   }, [productId]);
-
   async function getProductDetails() {
     setLoading(true);
-    client
-      .get(`/products/${productId}/`, {
+    const response = await client
+      .get(`/web/single/product/${productId}/`, {
         headers: headers,
       })
-      .then((response) => {
-        if (response.data.status) {
-          setTotalQuantity(
-            response.data.data.products?.available_stock_quantity
-          );
-
-          setProductData(response.data.data.products);
-          if (response.data.data.average_rating > MINIMUM_RATING_THRESHOLD) {
-            setAvgRating(response.data.data.average_rating);
-          }
-          if (response.data.data.rating_review_data !== null) {
-            setReviews(response.data.data.rating_review_data);
-          }
-          if (response.data.data.review_count > 0) {
-            setNoOfReviews(response.data.data.review_count);
-          }
-          setWished(response.data.data.products.is_wished);
-          setRecentlyViewedProducts(
-            response.data.data.recently_viewed_products
-          );
-          if (response.data?.data?.related_products !== undefined) {
-            setRelatedProducts(response.data.data.related_products);
-          }
-          if (response.data?.data?.other_products !== undefined) {
-            setOtherProducts(response.data.data.other_products);
-          }
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-          setLoading(false);
-        } else {
-          toast({
-            title: "There was an error loading the product details!",
-            description: "Please reload the page",
-            status: "error",
-            position: "top-right",
-            duration: 4000,
-            isClosable: true,
-          });
+     if (Response) {
+      setProductData(response.data.data)
+     }
+     setLoading(false)
+    }
+      async function  getrelated() {
+        //setLoading(true);
+        const response = await  client
+        .get(`/web/single/product/related/${productId}/`, {
+          headers: headers,
+        })
+        if (Response) {
+          setRelatedProducts(response.data.data)
+         }
+      
+      }
+      async function getother() {
+         const response = await 
+        client
+          .get(`/web/single/product/other/${productId}/`, {
+            headers: headers,
+            
+          })
+          if (Response) {
+            setOtherProducts(response.data.data)
+           }
+          
+          //setLoading(false)
         }
-      });
-  }
+
+        async function getrecentlyviewed() {
+          
+          client
+            .get(`/web/single/product/recently-viewed/${productId}/`, {
+              headers: headers,
+            })
+            if (Response) {
+              setRecentlyViewedProducts(response.data.data)
+             }
+            //setLoading(false)
+          }
+      
+
+  //     .then((response) => {
+  //       if (response.data.status) {
+  //         setTotalQuantity(
+  //           response.data.data.products?.available_stock_quantity
+  //         );
+
+  //         setProductData(response.data.data.products);
+  //         if (response.data.data.average_rating > MINIMUM_RATING_THRESHOLD) {
+  //           setAvgRating(response.data.data.average_rating);
+  //         }
+  //         if (response.data.data.rating_review_data !== null) {
+  //           setReviews(response.data.data.rating_review_data);
+  //         }
+  //         if (response.data.data.review_count > 0) {
+  //           setNoOfReviews(response.data.data.review_count);
+  //         }
+  //         setWished(response.data.data.products.is_wished);
+  //         setRecentlyViewedProducts(
+  //           response.data.data.recently_viewed_products
+  //         );
+  //         if (response.data?.data?.related_products !== undefined) {
+  //           setRelatedProducts(response.data.data.related_products);
+  //         }
+  //         if (response.data?.data?.other_products !== undefined) {
+  //           setOtherProducts(response.data.data.other_products);
+  //         }
+  //         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  //         setLoading(false);
+  //       } else {
+  //         toast({
+  //           title: "There was an error loading the product details!",
+  //           description: "Please reload the page",
+  //           status: "error",
+  //           position: "top-right",
+  //           duration: 4000,
+  //           isClosable: true,
+  //         });
+  //       }
+  //     });
+  // }
 
   
   const modifiedDescription = productData && productData.description
@@ -344,8 +389,8 @@ export default function ProductDetails() {
                       <Text fontSize={16}>{avgRating}</Text>
                       <Icon as={AiFillStar} marginTop={1} boxSize={4} />
                     </Badge> */}
-                    {productData.brand_name &&
-                      productData.brand_name.length > 0 && (
+                    {productData?.brand_name &&
+                       (
                         <Text
                           fontSize={{
                             base: "14px",
@@ -719,7 +764,7 @@ export default function ProductDetails() {
             <ModalContent>
               <form onSubmit={handleSubmit}>
                 <ModalHeader fontWeight={600}>
-                  Write Review for {productData.name}
+                  Write Review for {productData?.name}
                 </ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
