@@ -239,7 +239,7 @@ const banner = [
 export default function Home() {
   const [isFullScreen] = useMediaQuery("(min-width: 768px)");
   const width = useBreakpointValue({ base: "100%", lg: "100%" });
-  const height = useBreakpointValue({ base: "300", lg: "400" });
+  const height = useBreakpointValue({ base: "200", lg: "400" });
   const [banners, setBanners] = useState(banner);
   const [loading, setLoading] = useState(true);
   const [isMobile] = useMediaQuery("(max-width: 480px)");
@@ -380,18 +380,21 @@ export default function Home() {
         title="Try Our New Products"
         loading={loading}
         products={newArrival}
+        type={isMobile && "carousal"}
       />
 
       <ProductListSectionHome
         title="Must Try: Co Fee Co Products"
         loading={loading}
         products={MustTry}
+        type={isMobile && "carousal"}
       />
 
       <ProductListSectionHome
         title="All Time Best Sellers"
         loading={loading}
         products={BestSeller}
+        type={isMobile && "carousal"}
       />
       {/* <Container mb={5} px={0} maxW={"container.xl"} >
        

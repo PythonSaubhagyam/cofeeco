@@ -88,7 +88,7 @@ const ProductListSectionHome = ({ title, products, loading, type }) => {
 
   return (
     <>
-      <Container maxW={"container.xl"} px={0} pt={4} pb={6}>
+     <Container maxW={"container.xl"} px={0}  pb={6}>
         <Text
           fontSize={{ base: "xl", sm: "2xl", xl: "3xl" }}
           bgColor={"bg.500"}
@@ -100,7 +100,8 @@ const ProductListSectionHome = ({ title, products, loading, type }) => {
         >
           {title}
         </Text>
-        {type === "carousal" && products.length > 4 ? (
+
+        {type === "carousal" && products && products?.length > 4 ? (
           <Slider {...settings}>
             {loading === true
               ? [0, 1, 2, 3, 4].map((index) => (
@@ -122,7 +123,9 @@ const ProductListSectionHome = ({ title, products, loading, type }) => {
                   </Box>
                 ))
               : products?.map((product) => (
-                  <ProductCardHome key={product.id} product={product} />
+                <Box key={product.id} px={{base:"20px",md:"20px"}} >
+                  <ProductCardHome  key={product.id} product={product} />
+                 </Box>
                 ))}
           </Slider>
         ) : (
@@ -130,17 +133,15 @@ const ProductListSectionHome = ({ title, products, loading, type }) => {
             templateColumns={{
               base: "repeat(1, 1fr)",
               md: "repeat(3, 1fr)",
-
               xl: "repeat(5, 1fr)",
             }}
-            //justify={ "start"}
+            px={4}
+            // justify={ "start"}
             justify="center"
             align="center"
-           
             direction={{ base: "column", md: "row" }}
             // wrap={"wrap"}
             wrap={{ md: "wrap", lg: "nowrap" }}
-            px={5}
             gap={6}
           >
             {loading === true ? (
