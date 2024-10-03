@@ -97,8 +97,9 @@ const AboutUs = () => {
         </Box>
         <Container maxW={"container.xl"} mb={5} centerContent>
           <Image
-            src={require("../assets/home/store_names.jpg")
-            }
+           src={
+            require("../assets/001.jpg")
+          }
             w={"container.xl"}
             alt=""
             style={{
