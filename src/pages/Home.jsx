@@ -321,15 +321,15 @@ export default function Home() {
         )}
       </Container>
 
-      <Container maxW={"container.xl"} mb={8} mt={2} px={0}>
+      <Container maxW={"container.xl"} mb={8}  px={0}>
         <Text
           fontSize={{ base: "xl", sm: "2xl", xl: "2xl" }}
           fontWeight={500}
           bgColor={"bg.500"}
           textAlign={{ base: "center", md: "start" }}
-          px={{ base: 2, md: 8 }}
+         // px={{ base: 2, md: 8 }}
           py={4}
-          my={3}
+          //my={3}
         >
           About CO FEE CO
         </Text>
