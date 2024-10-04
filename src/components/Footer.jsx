@@ -31,12 +31,7 @@ export default function Footer() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   const [isMobiles, setIsMobiles] = useState(window.innerWidth <= 600);
   const loginInfo = checkLogin();
-  const checkOrSetUDIDInfo = CheckOrSetUDID();
-  let headers = { visitor: checkOrSetUDIDInfo.visitor_id };
-
-  if (loginInfo.isLoggedIn === true) {
-    headers = { Authorization: `token ${loginInfo.token}` };
-  }
+ 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
