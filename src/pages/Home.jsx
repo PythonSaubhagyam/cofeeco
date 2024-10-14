@@ -254,8 +254,12 @@ export default function Home() {
   const isMobiles = width <= 768;
   const navigate = useNavigate();
   useEffect(() => {
-    CheckOrSetUDID();
-    getHomePageData();
+    const init = async () => {
+      await CheckOrSetUDID();
+       };
+  
+    init();
+    //getHomePageData();
     getBlogs();
     getNewArrival();
     getMustTry();
