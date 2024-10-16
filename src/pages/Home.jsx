@@ -239,7 +239,7 @@ const banner = [
 export default function Home() {
   const [isFullScreen] = useMediaQuery("(min-width: 768px)");
   const width = useBreakpointValue({ base: "100%", lg: "100%" });
-  const height = useBreakpointValue({ base: "200", lg: "400" });
+  const height = useBreakpointValue({ base: "300", lg: "400" });
   const [banners, setBanners] = useState(banner);
   const [loading, setLoading] = useState(true);
   const [isMobile] = useMediaQuery("(max-width: 480px)");
@@ -249,32 +249,26 @@ export default function Home() {
   const [newArrival, setNewArrival] = useState([]);
   const [MustTry, setMustTry] = useState([]);
   const [BestSeller, setBestSeller] = useState([]);
-  const [sections, setSections] = useState([]);
   // const [cocoaPower, setCocoaPower] = useState([]);
   const isMobiles = width <= 768;
   const navigate = useNavigate();
   useEffect(() => {
-    const init = async () => {
-      await CheckOrSetUDID();
-       };
-  
-    init();
-    //getHomePageData();
+    CheckOrSetUDID();
+    // getHomePageData();
     getBlogs();
     getNewArrival();
     getMustTry();
     getBestSeller();
-    getImage();
   }, []);
 
-  async function getHomePageData() {
-    const response = await client.get("/home");
-    if (response.data.status === true) {
-      //setBanners(response.data.banners);
-      setHome(response.data);
-    }
-    setLoading(false);
-  }
+  // async function getHomePageData() {
+  //   const response = await client.get("/home");
+  //   if (response.data.status === true) {
+  //     //setBanners(response.data.banners);
+  //     setHome(response.data);
+  //   }
+  //   setLoading(false);
+  // }
   async function getBlogs() {
     const params = {};
     const response = await client.get("/home/blogs/", {
@@ -283,6 +277,7 @@ export default function Home() {
     if (response.data.status === true) {
       setBlogs(response.data.blogs);
     }
+    setLoading(false);
   }
 
   async function getNewArrival() {
@@ -309,16 +304,7 @@ export default function Home() {
     }
     setLoading(false);
   }
-  async function getImage() {
-    const params = {};
-    const response = await client.get("/lower-section", {
-      params: params,
-    });
-    if (response.data.status === true) {
-      setSections(response.data.data);
-    }
-  }
-  console.log(sections)
+
   return (
     <>
       {/* {loading === true ? (
@@ -342,9 +328,9 @@ export default function Home() {
           fontWeight={500}
           bgColor={"bg.500"}
           textAlign={{ base: "center", md: "start" }}
-         // px={{ base: 2, md: 8 }}
+          px={{ base: 2, md: 8 }}
           py={4}
-          //my={3}
+          //my={7}
         >
           About CO FEE CO
         </Text>
@@ -395,21 +381,18 @@ export default function Home() {
         title="Try Our New Products"
         loading={loading}
         products={newArrival}
-        type={isMobile && "carousal"}
       />
 
       <ProductListSectionHome
         title="Must Try: Co Fee Co Products"
         loading={loading}
         products={MustTry}
-        type={isMobile && "carousal"}
       />
 
       <ProductListSectionHome
         title="All Time Best Sellers"
         loading={loading}
         products={BestSeller}
-        type={isMobile && "carousal"}
       />
       {/* <Container mb={5} px={0} maxW={"container.xl"} >
        
@@ -592,7 +575,7 @@ export default function Home() {
             align={"center"}
             mt={3}
           >
-              {sections?.length >0 && sections[0].label}
+            OUR CERTIFICATIONS & AWARDS
           </Heading>
         </Box>
         <Text my={5} textAlign={"center"} color="text.300">
@@ -608,7 +591,9 @@ export default function Home() {
           pb={6}
         >
           <LazyLoadImage
-            src={sections?.length > 0 && sections[0]?.images[0].image}
+            src={
+              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/HomePage/global-certificate.jpg"
+            }
             alt="global-certificate"
             style={{
               opacity: 1,
@@ -616,7 +601,9 @@ export default function Home() {
             }}
           />
           <LazyLoadImage
-             src={sections?.length > 0 && sections[0]?.images[1].image}
+            src={
+              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/HomePage/ciolook-certificate.jpg"
+            }
             alt="ciolook-certificate"
             style={{
               opacity: 1,
@@ -681,12 +668,14 @@ export default function Home() {
             my={7}
             pb={"10px"}
           >
-            {sections?.length >0 && sections[1].label}
+            OUR SERVICES ARE AVAILABLE IN
           </Heading>
         </Box>
         <Box display={"flex"} justifyContent={"center"}>
           <LazyLoadImage
-             src={sections?.length > 0 && sections[1]?.images[0].image}
+            src={
+              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/Map.webp"
+            }
             w={{ base: "100%", md: "100%" }}
             alt=""
             py={4}
@@ -710,12 +699,12 @@ export default function Home() {
             my={"5"}
             pb={"10px"}
           >
-            {sections?.length >0 && sections[2].label}
+            AVAILABLE AT
           </Heading>
         </Box>
         <Container maxW={"container.xl"} mb={5} px={0} centerContent>
           <Image
-            src={sections?.length > 0 && sections[2]?.images[0].image}
+            src={require("../assets/001.jpg")}
             w={"container.xl"}
             alt=""
             style={{
