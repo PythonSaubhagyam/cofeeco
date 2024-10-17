@@ -249,6 +249,11 @@ export default function Home() {
   const [newArrival, setNewArrival] = useState([]);
   const [MustTry, setMustTry] = useState([]);
   const [BestSeller, setBestSeller] = useState([]);
+  const [sections, setSections] = useState([]);
+
+  const [awardsSection, setAwardSection] = useState();
+  const [servicesSection, setServicesSection] = useState();
+  const [availableSection, setAvailableSection] = useState();
   // const [cocoaPower, setCocoaPower] = useState([]);
   const isMobiles = width <= 768;
   const navigate = useNavigate();
@@ -259,6 +264,7 @@ export default function Home() {
     getNewArrival();
     getMustTry();
     getBestSeller();
+    getLowerSection();
   }, []);
 
   // async function getHomePageData() {
@@ -303,6 +309,30 @@ export default function Home() {
       setBestSeller(response.data.data);
     }
     setLoading(false);
+  }
+  async function getLowerSection() {
+    const params = {};
+    const response = await client.get("/lower-section/", {
+      params: params,
+    });
+    if (response.data.status === true) {
+      setSections(response.data.data);
+     
+      const ourServicesSection = response.data.data?.filter(
+        (section) => section.id === 2
+      );
+      const availableAtSection = response.data.data?.filter(
+        (section) => section.id === 3
+      );
+      const ourAwardsSection = response.data.data?.filter(
+        (section) => section.id === 1
+      );
+     
+      setAwardSection(ourAwardsSection);
+      setServicesSection(ourServicesSection);
+      setAvailableSection(availableAtSection);
+     
+    }
   }
 
   return (
@@ -561,56 +591,59 @@ export default function Home() {
           </Stat> */}
         </SimpleGrid>
       </Container>
-      <Container my={9} maxW={{ base: "100vw", md: "container.xl" }}>
-        <Box
-          w="100%"
-          backgroundSize="100%"
-          backgroundPosition="50% 100%"
-          backgroundRepeat={"no-repeat"}
-        >
-          <Heading
-            color="brand.500"
-            fontSize={{ md: 33, base: 21 }}
-            mx="auto"
-            align={"center"}
-            mt={3}
-          >
-            OUR CERTIFICATIONS & AWARDS
-          </Heading>
-        </Box>
-        <Text my={5} textAlign={"center"} color="text.300">
-          We are committed to quality and each of our facilities is
-          independently certified by an industry-accredited agency.
-        </Text>
-        <Flex
-          justifyContent="space-evenly"
-          direction={{ base: "column", md: "row" }}
-          align="center"
-          gap={12}
-          pt={1}
-          pb={6}
-        >
-          <LazyLoadImage
-            src={
-              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/HomePage/global-certificate.jpg"
-            }
-            alt="global-certificate"
-            style={{
-              opacity: 1,
-              transition: "opacity 0.7s", // Note the corrected syntax here
-            }}
-          />
-          <LazyLoadImage
-            src={
-              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/HomePage/ciolook-certificate.jpg"
-            }
-            alt="ciolook-certificate"
-            style={{
-              opacity: 1,
-              transition: "opacity 0.7s", // Note the corrected syntax here
-            }}
-          />
-        </Flex>
+      {awardsSection?.length > 0 &&
+        awardsSection[0]?.is_visible_on_website === true && (
+          <Container maxW={{ base: "100vw", md: "container.xl" }}>
+           
+              <Heading
+                color="brand.500"
+                fontSize={{ md: 33, base: 20 }}
+                mx="auto"
+                align={"center"}
+                mt={3}
+                pb={"10px"}
+              >
+                {awardsSection?.length > 0 && awardsSection[0]?.label}
+              </Heading>
+           
+            <Text my={5} textAlign={"center"} color="text.300">
+              We are committed to quality and each of our facilities is
+              independently certified by an industry-accredited agency.
+            </Text>
+            <Flex
+              justifyContent="space-evenly"
+              direction={{ base: "column", md: "row" }}
+              align="center"
+              gap={12}
+              pt={1}
+              pb={6}
+            >
+              <LazyLoadImage
+                src={
+                  awardsSection[0]?.images?.length > 0 &&
+                  awardsSection[0]?.images[0]?.image
+                }
+                alt="global-certificate"
+                style={{
+                  opacity: 1,
+                  transition: "opacity 0.7s", // Note the corrected syntax here
+                }}
+              />
+              <LazyLoadImage
+                src={
+                  awardsSection[0]?.images?.length > 0 &&
+                  awardsSection[0]?.images[1]?.image
+                }
+                alt="ciolook-certificate"
+                style={{
+                  opacity: 1,
+                  transition: "opacity 0.7s", // Note the corrected syntax here
+                }}
+              />
+            </Flex>
+          </Container>
+        )}
+       
         <Box
           w="100%"
           backgroundSize="100%"
@@ -653,67 +686,69 @@ export default function Home() {
             src={require("../assets/home/cofeeco.jpg")}
           />
         </Container>
-        <Box
-          w="100%"
-          backgroundSize="100%"
-          backgroundPosition="50% 100%"
-          backgroundRepeat={"no-repeat"}
-        >
-          <Heading
-            color="brand.500"
-            // /size={{md:"lg",base:"md"}}
-            fontSize={{ md: 33, base: 20 }}
-            mx="auto"
-            align={"center"}
-            my={7}
-            pb={"10px"}
-          >
-            OUR SERVICES ARE AVAILABLE IN
-          </Heading>
-        </Box>
-        <Box display={"flex"} justifyContent={"center"}>
-          <LazyLoadImage
-            src={
-              "https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/Map.webp"
-            }
-            w={{ base: "100%", md: "100%" }}
-            alt=""
-            py={4}
-            style={{
-              opacity: 1,
-              transition: "opacity 0.7s", // Note the corrected syntax here
-            }}
-          />
-        </Box>
-        <Box
-          w="100%"
-          backgroundSize="100%"
-          backgroundPosition="50% 100%"
-          backgroundRepeat={"no-repeat"}
-        >
-          <Heading
-            color="brand.500"
-            fontSize={{ md: 33, base: 22 }}
-            mx="auto"
-            align={"center"}
-            my={"5"}
-            pb={"10px"}
-          >
-            AVAILABLE AT
-          </Heading>
-        </Box>
-        <Container maxW={"container.xl"} mb={5} px={0} centerContent>
-          <Image
-            src={require("../assets/001.jpg")}
-            w={"container.xl"}
-            alt=""
-            style={{
-              opacity: 1,
-              transition: "opacity 0.7s", // Note the corrected syntax here
-            }}
-          />
-        </Container>
-      </Container>
+        {servicesSection?.length > 0 &&
+        servicesSection[0]?.is_visible_on_website === true && (
+          <Container maxW={{ base: "100vw", md: "container.xl" }}>
+           
+              <Heading
+                color="brand.500"
+                fontSize={{ md: 33, base: 20 }}
+                mx="auto"
+                align={"center"}
+                my={"5"}
+                pb={"10px"}
+              >
+                {servicesSection?.length > 0 && servicesSection[0].label}
+              </Heading>
+           
+            <Box display={"flex"} justifyContent={"center"}>
+              <LazyLoadImage
+                src={
+                  servicesSection?.length > 0 &&
+                  servicesSection[0]?.images[0].image
+                }
+                w={{ base: "100%", md: "100%" }}
+                alt=""
+                py={4}
+                style={{
+                  opacity: 1,
+                  transition: "opacity 0.7s", // Note the corrected syntax here
+                }}
+              />
+            </Box>
+          </Container>
+        )}
+        {availableSection?.length > 0 &&
+        availableSection[0]?.is_visible_on_website === true && (
+          <Container maxW={"container.xl"} mb={5} px={0} centerContent>
+            
+              <Heading
+                color="brand.500"
+                fontSize={{ md: 33, base: 22 }}
+                mx="auto"
+                align={"center"}
+                my={"5"}
+                pb={"10px"}
+              >
+                {availableSection?.length > 0 && availableSection[0].label}
+              </Heading>
+            
+            <Image
+              src={
+                availableSection?.length > 0 &&
+                availableSection[0]?.images[0].image
+              }
+              w={"container.xl"}
+              alt=""
+              style={{
+                opacity: 1,
+                transition: "opacity 0.7s", // Note the corrected syntax here
+              }}
+            />
+          </Container>
+        )}
+     
+     
       <ScrollToTop/>
       <Footer />
       {/* </>
