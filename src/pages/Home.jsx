@@ -317,7 +317,7 @@ export default function Home() {
     });
     if (response.data.status === true) {
       setSections(response.data.data);
-     
+
       const ourServicesSection = response.data.data?.filter(
         (section) => section.id === 2
       );
@@ -327,11 +327,10 @@ export default function Home() {
       const ourAwardsSection = response.data.data?.filter(
         (section) => section.id === 1
       );
-     
+
       setAwardSection(ourAwardsSection);
       setServicesSection(ourServicesSection);
       setAvailableSection(availableAtSection);
-     
     }
   }
 
@@ -352,7 +351,7 @@ export default function Home() {
         )}
       </Container>
 
-      <Container maxW={"container.xl"} mb={8}  px={0}>
+      <Container maxW={"container.xl"} mb={8} px={0}>
         <Text
           fontSize={{ base: "xl", sm: "2xl", xl: "2xl" }}
           fontWeight={500}
@@ -468,14 +467,7 @@ export default function Home() {
       /> */}
 
       <Container maxW={"container.xl"}>
-        <Heading
-          color="brand.500"
-          size="lg"
-          mx="auto"
-          align={"center"}
-          mt={3}
-         
-        >
+        <Heading color="brand.500" size="lg" mx="auto" align={"center"} mt={3}>
           BLOGS
         </Heading>
 
@@ -594,18 +586,17 @@ export default function Home() {
       {awardsSection?.length > 0 &&
         awardsSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
-           
-              <Heading
-                color="brand.500"
-                fontSize={{ md: 33, base: 20 }}
-                mx="auto"
-                align={"center"}
-                mt={3}
-                pb={"10px"}
-              >
-                {awardsSection?.length > 0 && awardsSection[0]?.label}
-              </Heading>
-           
+            <Heading
+              color="brand.500"
+              fontSize={{ md: 33, base: 20 }}
+              mx="auto"
+              align={"center"}
+              mt={3}
+              pb={"10px"}
+            >
+              {awardsSection?.length > 0 && awardsSection[0]?.label}
+            </Heading>
+
             <Text my={5} textAlign={"center"} color="text.300">
               We are committed to quality and each of our facilities is
               independently certified by an industry-accredited agency.
@@ -643,24 +634,25 @@ export default function Home() {
             </Flex>
           </Container>
         )}
-       
-        <Box
-          w="100%"
-          backgroundSize="100%"
-          backgroundPosition="50% 100%"
-          backgroundRepeat={"no-repeat"}
+
+      <Box
+        w="100%"
+        backgroundSize="100%"
+        backgroundPosition="50% 100%"
+        backgroundRepeat={"no-repeat"}
+      >
+        <Heading
+          color="brand.500"
+          fontSize={{ md: 33, base: 22 }}
+          mx="auto"
+          align={"center"}
+          my={5}
+          pb={"10px"}
         >
-          <Heading
-            color="brand.500"
-            fontSize={{ md: 33, base: 22 }}
-            mx="auto"
-            align={"center"}
-            my={5}
-            pb={"10px"}
-          >
-            LICENSES & AFFILIATIONS
-          </Heading>
-        </Box>
+          LICENSES & AFFILIATIONS
+        </Heading>
+      </Box>
+      <Container maxW={"container.xl"} px={0} pb={6}>
         <Grid
           templateColumns={{
             base: "repeat(1, 1fr)",
@@ -679,38 +671,26 @@ export default function Home() {
             </GridItem>
           ))}
         </Grid>
+      </Container>
+      <Container maxW={"container.xl"} pt={5} pb={8} centerContent>
+        <Image w={{ md: "70%" }} src={require("../assets/home/cofeeco.jpg")} />
+      </Container>
 
-        <Container maxW={"container.xl"} pt={5} pb={8} centerContent>
-          <Image
-            w={{ md: "70%" }}
-            src={require("../assets/home/cofeeco.jpg")}
-          />
-        </Container>
-       
-        {servicesSection?.length > 0 &&
+      {servicesSection?.length > 0 &&
         servicesSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
-            <Image
-          w={{md:"65%"}}
-          my={10}
-          src={require("../assets/home/vama_icon(1).jpg")}
-          mx="auto"
-          style={{
-            opacity: 1,
-            transition: "opacity 0.7s", // Note the corrected syntax here
-          }}
-        />
-              <Heading
-                color="brand.500"
-                fontSize={{ md: 33, base: 20 }}
-                mx="auto"
-                align={"center"}
-                my={"5"}
-                pb={"10px"}
-              >
-                {servicesSection?.length > 0 && servicesSection[0].label}
-              </Heading>
            
+            <Heading
+              color="brand.500"
+              fontSize={{ md: 33, base: 20 }}
+              mx="auto"
+              align={"center"}
+              my={"5"}
+              pb={"10px"}
+            >
+              {servicesSection?.length > 0 && servicesSection[0].label}
+            </Heading>
+
             <Box display={"flex"} justifyContent={"center"}>
               <LazyLoadImage
                 src={
@@ -728,21 +708,20 @@ export default function Home() {
             </Box>
           </Container>
         )}
-        {availableSection?.length > 0 &&
+      {availableSection?.length > 0 &&
         availableSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} mb={5} px={0} centerContent>
-            
-              <Heading
-                color="brand.500"
-                fontSize={{ md: 33, base: 22 }}
-                mx="auto"
-                align={"center"}
-                my={"5"}
-                pb={"10px"}
-              >
-                {availableSection?.length > 0 && availableSection[0].label}
-              </Heading>
-            
+            <Heading
+              color="brand.500"
+              fontSize={{ md: 33, base: 22 }}
+              mx="auto"
+              align={"center"}
+              my={"5"}
+              pb={"10px"}
+            >
+              {availableSection?.length > 0 && availableSection[0].label}
+            </Heading>
+
             <Image
               src={
                 availableSection?.length > 0 &&
@@ -757,9 +736,8 @@ export default function Home() {
             />
           </Container>
         )}
-     
-     
-      <ScrollToTop/>
+
+      <ScrollToTop />
       <Footer />
       {/* </>
       )} */}
