@@ -686,10 +686,20 @@ export default function Home() {
             src={require("../assets/home/cofeeco.jpg")}
           />
         </Container>
+       
         {servicesSection?.length > 0 &&
         servicesSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
-           
+            <Image
+          w={{md:"65%"}}
+          my={10}
+          src={require("../assets/home/vama_icon(1).jpg")}
+          mx="auto"
+          style={{
+            opacity: 1,
+            transition: "opacity 0.7s", // Note the corrected syntax here
+          }}
+        />
               <Heading
                 color="brand.500"
                 fontSize={{ md: 33, base: 20 }}
