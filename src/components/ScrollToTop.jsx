@@ -30,6 +30,7 @@ const ScrollToTop = () => {
 
   return (
     <>
+   
       {isVisible === true && (
         <div style={{ display: "flex" }}>
           <IconButton
@@ -42,6 +43,7 @@ const ScrollToTop = () => {
           />
         </div>
       )}
+      
     </>
   );
 };
