@@ -39,6 +39,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
 import checkLogin from "../utils/checkLogin";
 import BreadCrumbCom from "../components/BreadCrumbCom";
+import LoginModal from "../components/LoginModal";
 
 export default function Cart() {
   const messageRef = useRef(null);
@@ -50,6 +51,7 @@ export default function Cart() {
   const [taxes, setTaxes] = useState(0.0);
   const [grandTotal, setGrandTotal] = useState(0.0);
   const [isGift, setIsGift] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [cartRemoveLoading, setCartRemoveLoading] = useState();
   // const [useGiftWrap, setUseGiftWrap] = useState(false);
   const [giftMessage, setGiftMessage] = useState("");
@@ -63,12 +65,11 @@ export default function Cart() {
   const [isMobile] = useMediaQuery("(max-width: 768px)");
 
   const loginInfo = checkLogin();
- 
 
   async function getCart() {
     const checkOrSetUDIDInfo = await CheckOrSetUDID();
     let headers = { visitor: checkOrSetUDIDInfo?.visitor_id };
-  
+
     if (loginInfo.isLoggedIn === true) {
       headers = { Authorization: `token ${loginInfo?.token}` };
     }
@@ -126,7 +127,7 @@ export default function Cart() {
   const removeProductFromCart = async (id) => {
     const checkOrSetUDIDInfo = await CheckOrSetUDID();
     let headers = { visitor: checkOrSetUDIDInfo?.visitor_id };
-  
+
     if (loginInfo.isLoggedIn === true) {
       headers = { Authorization: `token ${loginInfo?.token}` };
     }
@@ -167,8 +168,8 @@ export default function Cart() {
         duration: 4000,
         isClosable: true,
       });
-      setVoucherCode("")
-      setVoucherApplied(false);
+    setVoucherCode("");
+    setVoucherApplied(false);
   };
 
   async function handleQuantityChange(
@@ -178,7 +179,7 @@ export default function Cart() {
   ) {
     const checkOrSetUDIDInfo = await CheckOrSetUDID();
     let headers = { visitor: checkOrSetUDIDInfo?.visitor_id };
-  
+
     if (loginInfo.isLoggedIn === true) {
       headers = { Authorization: `token ${loginInfo?.token}` };
     }
@@ -210,7 +211,7 @@ export default function Cart() {
             isClosable: true,
           });
         }
-        setVoucherCode("")
+        setVoucherCode("");
         setVoucherApplied(false);
         getCart();
       } else {
@@ -267,7 +268,7 @@ export default function Cart() {
         });
       }
     } else {
-      navigate("/login");
+      setIsLoginModalOpen(true)
       toast({
         title: "Please login to place an order!",
         status: "info",
@@ -666,8 +667,13 @@ export default function Cart() {
           </>
         )}
       </Container>
-
-      <ScrollToTop/>
+      {!checkLogin().isLoggedIn && (
+        <LoginModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
+        />
+      )}
+      <ScrollToTop />
       <Footer />
     </>
   );
