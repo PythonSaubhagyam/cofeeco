@@ -14,8 +14,8 @@ const AboutUs = () => {
       <Container maxW={"container.xl"} alignContent={"flex-start"}>
         <BreadCrumbCom second={"About Us"} secondUrl={"/about-us"} />{" "}
       </Container>
-      <Container maxW={"container.xl"} mb={4} px={0}>
-        <Image src={require("../assets/aboutus/about_us.jpg")} />
+      <Container maxW={"container.xl"} mb={4} px={0} centerContent>
+        <Image src={require("../assets/aboutus/about_us.jpg")} width="100%"/>
         <Flex flexDirection={"column"}  gap={3} px={{md:"10%",base:10}} py={10}>
           <Box
             fontWeight={"600"}
