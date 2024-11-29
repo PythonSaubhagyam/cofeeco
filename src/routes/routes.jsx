@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
-import Home from "../pages/Home";
+import Home from "../pages/Home"; 
+//import HomeSlice from "../Redux/Features/HomeSlice";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import ResetPassword from "../pages/ResetPassword";
@@ -29,7 +30,7 @@ import ContactUs from "../pages/ContactUs";
 import ConsultOurVaidya from "../pages/ConsultOurVaidya";
 import OrganicLiving from "../pages/OrganicLiving";
 import CustomerProfile from "../pages/CustomerProfile";
-import AboutUs from "../pages/AboutUs";
+import AboutUs from "../pages/Aboutus";
 import Appreciation from "../pages/Appreciation";
 import Resources from "../pages/Resources";
 import UpdateProfileForm from "../pages/forms/UpdateProfileForm";
@@ -44,6 +45,11 @@ import Export from "../pages/Export";
 import PrivacyPolicy from "../pages/PrivacyPolicy"
 
 const Router = createBrowserRouter([
+  // {
+  //   path: "/",
+  //   element: <HomeSlice />,
+  //   errorElement: <ErrorPage />,
+  // },
   {
     path: "/",
     element: <Home />,
