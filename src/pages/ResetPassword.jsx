@@ -37,6 +37,7 @@ export default function ResetPassword() {
           isClosable: true,
         });
         setIsLoginModalOpen(true)
+      } else {
         toast({
           title: `${response.data.message}`,
           position: "top-right",
