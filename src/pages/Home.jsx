@@ -136,7 +136,7 @@ export default function Home() {
   async function getBestSeller() {
     const response = await client.get("bestofalltime/list");
     if (response) {
-      console.log(response.data);
+    
       setBestSeller(response.data.data);
     }
     setLoading(false);
