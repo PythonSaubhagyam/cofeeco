@@ -40,7 +40,8 @@ import Testimonials from "../components/testimonials";
 import ProductListSectionHome from "../components/ProductListSectionHome";
 import ScrollToTop from "../components/ScrollToTop";
 import { useDispatch, useSelector } from "react-redux"
-
+import CountUp from 'react-countup';
+import ScrollTrigger from 'react-scroll-trigger';
 import {
   fetchBanner,
   fetchUpperSection,
@@ -75,6 +76,7 @@ export default function Home() {
   const [showPopup, setShowPopup] = useState(
     sessionStorage.getItem("hasShownPopup")
   );
+  const [countUp, setCountUp] = useState()
   // const [cocoaPower, setCocoaPower] = useState([]);
   const isMobiles = width <= 768;
   const navigate = useNavigate();
@@ -448,34 +450,43 @@ export default function Home() {
         </Grid>
       </Container>
 
-      {statisticsSection?.length > 0 &&
-        statisticsSection[0]?.is_visible_on_website === true && (
-          <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
-            <SimpleGrid
-              columns={[2, 3, null, 5]}
-              px={6}
-              maxW={"container.xl"}
-              my={6}
-              backgroundColor={"bg.500"}
-              align="center"
-              spacingX={{ base: "10vw", md: "30px" }}
-              spacingY="40px"
-            >
-              {statisticsSection?.length > 0 &&
-                statisticsSection?.map((data) => (
-                  <Stat>
-                    <StatNumber
-                      color="text.500"
-                      fontSize={{ base: "3xl", md: "3xl" }}
+      {statisticsSection?.length > 0 && (
+        <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
+          <SimpleGrid
+            columns={[2, 3, null, 5]}
+            px={6}
+            maxW={"container.xl"}
+            my={6}
+            backgroundColor={"bg.500"}
+            align="center"
+            spacingX={{ base: "10vw", md: "30px" }}
+            spacingY="40px"
+          >
+            {statisticsSection?.length > 0 &&
+              statisticsSection?.map((data) => (
+                <Stat key={data.id}>
+                  <StatNumber fontSize={{ base: "3xl", md: "3xl" }}>
+                    <ScrollTrigger
+                      onEnter={() => setCountUp(true)}
+                      // onExit={() => setCountUp(false)}
                     >
-                      {data?.value}
-                    </StatNumber>
-                    <StatHelpText color="gray.600">{data?.name}</StatHelpText>
-                  </Stat>
-                ))}
-            </SimpleGrid>
-          </Container>
-        )}
+                      {countUp ? (
+                        <CountUp
+                          start={0}
+                          end={Number(data.value.replace('+', ''))}
+                          duration={2}
+                          delay={0}
+                        />
+                      ) : null}
+                      +
+                      </ScrollTrigger>
+                  </StatNumber>
+                  <StatHelpText color="gray.600">{data?.name}</StatHelpText>
+                </Stat>
+              ))}
+          </SimpleGrid>
+        </Container>
+      )}
       {awardsSection?.length > 0 &&
         awardsSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
