@@ -331,36 +331,24 @@ export default function Navbar() {
 
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const dispatch = useDispatch()
-  const { categories, mergedCategories } = useSelector(
+  const { categories, mergedCategories,hasFetched } = useSelector(
    (state) => state.category
  );
 
   useEffect(() => {
     const init = async () => {
       await CheckOrSetUDID();
-      dispatch(fetchCategories());
     };  
     init();
   }, []);
 
-  // const mergeArraysById = (array1, array2) =>
-  //   array1.reduce((result, obj) => {
-  //     const matchingObj = array2.find((o) => o.id === obj.categoryId);
-  //     if (matchingObj) result.push({ ...obj, ...matchingObj });
-  //     return result;
-  //   }, []);
+  useEffect(() => {
+    if (!hasFetched) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, hasFetched]);
 
-  // const getCategories = async () => {
-  //   const response = await client.get("/categories/", {
-  //     params: { list: true },
-  //   });
 
-  //   if (response.data.status === true) {
-  //     setCategories(response.data.categories);
-  //     setMegaCategories(response.data.categories);
-  //     setTopCategory(mergeArraysById(mainLinks, response.data.categories));
-  //   }
-  // };
 
   useEffect(() => {
     if (didMount.current === true) {
@@ -538,7 +526,7 @@ export default function Navbar() {
                               lg: "75%",
                             }}
                           >
-                            <LinkOverlay href={`/products/${result.id}`}>
+                            <LinkOverlay as={ReactRouterLink} to={`/products/${result.id}`}>
                               {result.name}
                             </LinkOverlay>
                           </Text>
@@ -1012,7 +1000,7 @@ export default function Navbar() {
                           lg: "75%",
                         }}
                       >
-                        <LinkOverlay href={`/products/${result.id}`}>
+                        <LinkOverlay as={ReactRouterLink} to={`/products/${result.id}`}>
                           {result.name}
                         </LinkOverlay>
                       </Text>

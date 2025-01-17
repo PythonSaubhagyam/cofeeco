@@ -43,15 +43,7 @@ import { useDispatch, useSelector } from "react-redux"
 import CountUp from 'react-countup';
 import ScrollTrigger from 'react-scroll-trigger';
 import {
-  fetchBanner,
-  fetchUpperSection,
-  fetchTryOurNewProduct,
-  fetchMustTry,
-  fetchAllTimeBestSeller,
-  fetchLowerSection1,
-  fetchBlogs,
-  fetchStatisticsSection,
-  fetchLowerSection2,
+  initializeAppData,
 } from "../redux/slices/homeapi";
 
 
@@ -86,13 +78,14 @@ export default function Home() {
     banners,
     upperSection,
     tryOurNewProductSection,
-    mustTrySection,
+    mustTry,
     loader,
     allTimeBestSellerSection,
     lowerSection1,
     blogs,
-    statisticsSection,
-    lowerSection2
+    statistics,
+    lowerSection2,
+    hasFetched,
   } = useSelector((state) => state.home);
 
   const {
@@ -115,20 +108,16 @@ export default function Home() {
   useEffect(() => {
     CheckOrSetUDID();
     // getHomePageData();
-   
-    dispatch(fetchBanner());
-    dispatch(fetchUpperSection());
-    dispatch(fetchTryOurNewProduct());
-    dispatch(fetchMustTry());
-    dispatch(fetchAllTimeBestSeller());
-    dispatch(fetchLowerSection1());
-    dispatch(fetchBlogs());
-    dispatch(fetchStatisticsSection());
-    dispatch(fetchLowerSection2());
     if (showPopup === null && !loginInfo.isLoggedIn) {
       setIsLoginModalOpen(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (!hasFetched) {
+      dispatch(initializeAppData());
+    }
+  }, [dispatch, hasFetched]);
 
   
 
@@ -326,11 +315,11 @@ export default function Home() {
         />
       )}
 
-      {mustTrySection && mustTrySection?.length > 0 && (
+      {mustTry && mustTry?.length > 0 && (
         <ProductListSectionHome
           title="Must Try: Co Fee Co Products"
           loader={loader}
-          products={mustTrySection}
+          products={mustTry}
           type={isMobile && "carousal"}
         />
       )}
@@ -450,7 +439,7 @@ export default function Home() {
         </Grid>
       </Container>
 
-      {statisticsSection?.length > 0 && (
+      {statistics?.length > 0 && (
         <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
           <SimpleGrid
             columns={[2, 3, null, 5]}
@@ -462,8 +451,8 @@ export default function Home() {
             spacingX={{ base: "10vw", md: "30px" }}
             spacingY="40px"
           >
-            {statisticsSection?.length > 0 &&
-              statisticsSection?.map((data) => (
+            {statistics?.length > 0 &&
+              statistics?.map((data) => (
                 <Stat key={data.id}>
                   <StatNumber fontSize={{ base: "3xl", md: "3xl" }}>
                     <ScrollTrigger

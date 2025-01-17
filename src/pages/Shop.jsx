@@ -413,7 +413,7 @@ const { tagsArray, productFoamsArray, brandArray } = useSelector(
       var elementChange = temp[index];
       elementChange.is_wished = !item.is_wished;
       setProducts(temp);
-      getProducts();
+      // getProducts();
     }
   };
   return (
