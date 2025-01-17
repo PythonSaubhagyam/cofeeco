@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ReadMorePost from "../components/ReadMorePost";
-import { Box, Container, Text,Image } from "@chakra-ui/react";
+import { Box, Container, Text, Image } from "@chakra-ui/react";
 import BreadCrumbCom from "../components/BreadCrumbCom";
 import ScrollToTop from "../components/ScrollToTop";
 import { useLocation } from "react-router-dom";
+import MetaTags from "../context/MetaTagsContext";
 
 
 const Posts = [
@@ -83,14 +84,17 @@ const Posts = [
 ];
 
 export default function InspireSupport() {
-  
+
   let { search } = useLocation();
   const searchParams = new URLSearchParams(search);
-   const IsMobileView = searchParams.get("mobile") ?? "false";
+  const IsMobileView = searchParams.get("mobile") ?? "false";
+  const pageUrl = "/inspire-and-support";
 
   return (
     <>
-     {IsMobileView !== "true" && <Navbar />}
+      <MetaTags pageUrl={pageUrl} />
+
+      {IsMobileView !== "true" && <Navbar />}
 
 
       <Container maxW="container.xl">
@@ -100,14 +104,14 @@ export default function InspireSupport() {
         />{" "}
       </Container>
       <Container maxW={"container.xl"} mb={4} px={0} centerContent>
-      <Image src={require("../assets/inspire-support/inspire.jpg")} width="100%"/>
+        <Image src={require("../assets/inspire-support/inspire.jpg")} width="100%" />
       </Container>
       <Container maxW={"6xl"} py={4}>
         {Posts.map((postDetails) => (
           <ReadMorePost postAlign="horizontal" postDetails={postDetails} />
         ))}
       </Container>
-      <ScrollToTop/>
+      <ScrollToTop />
       {IsMobileView !== "true" && <Footer />}
 
 

@@ -5,17 +5,20 @@ import Navbar from "../components/Navbar";
 import { Box, Container, VStack, Image, Text, Heading } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
+import MetaTags from "../context/MetaTagsContext";
 
 const PrivacyPolicy = () => {
-  
+
   let { search } = useLocation();
   const searchParams = new URLSearchParams(search);
-   const IsMobileView = searchParams.get("mobile") ?? "false";
+  const IsMobileView = searchParams.get("mobile") ?? "false";
 
+  const pageUrl = "/privacy-policy";
   return (
     <>
-    
-    {IsMobileView !== "true" && <Navbar />}
+      <MetaTags pageUrl={pageUrl} />
+
+      {IsMobileView !== "true" && <Navbar />}
 
       <Container maxW={"container.xl"} alignContent={"flex-start"}>
         <BreadCrumbCom
@@ -50,7 +53,7 @@ const PrivacyPolicy = () => {
             Privacy Policy.
             <br />
             <br />
-            <Text fontWeight={600} fontSize={{md:"24px",base:"22px"}}>
+            <Text fontWeight={600} fontSize={{ md: "24px", base: "22px" }}>
               Information We Collect:-
             </Text>
             <br />
@@ -75,7 +78,7 @@ const PrivacyPolicy = () => {
             identifiable information as described under this Privacy Policy.
             <br />
             <br />
-            <Text fontWeight={600} fontSize={{md:"24px",base:"22px"}}>
+            <Text fontWeight={600} fontSize={{ md: "24px", base: "22px" }}>
               Credit Card, Debit Card and Banking Information:-
             </Text>
             <br />
@@ -87,7 +90,7 @@ const PrivacyPolicy = () => {
             stored by girgauveda.com.
             <br />
             <br />
-            <Text fontWeight={600} fontSize={{md:"24px",base:"22px"}}>
+            <Text fontWeight={600} fontSize={{ md: "24px", base: "22px" }}>
               Data Hosting:-
             </Text>
             <br />
@@ -100,7 +103,7 @@ const PrivacyPolicy = () => {
             consumer data
             <br />
             <br />
-            <Text fontWeight={600} fontSize={{md:"24px",base:"22px"}}>
+            <Text fontWeight={600} fontSize={{ md: "24px", base: "22px" }}>
               How We Use Your Personally Identifiable Information:-
             </Text>
             <br />
@@ -156,7 +159,7 @@ const PrivacyPolicy = () => {
             by way of emails or text messages/sms and phone calls
             <br />
             <br />
-            <Text fontWeight={600} fontSize={{md:"24px",base:"22px"}}>
+            <Text fontWeight={600} fontSize={{ md: "24px", base: "22px" }}>
               Technologies that Allow Us to Customize Your Experience on
               girgauveda.com:-
             </Text>
@@ -176,7 +179,7 @@ const PrivacyPolicy = () => {
             preferences.
             <br />
             <br />
-            <Text fontWeight={600} fontSize={{md:"24px",base:"22px"}}>
+            <Text fontWeight={600} fontSize={{ md: "24px", base: "22px" }}>
               Information We Share and Who We Share With:-
             </Text>
             <br />
@@ -279,7 +282,7 @@ const PrivacyPolicy = () => {
             website, we will delete the information from our records.
             <br />
             <br />
-            <Text fontWeight={600} fontSize={{md:"24px",base:"20px"}}>
+            <Text fontWeight={600} fontSize={{ md: "24px", base: "20px" }}>
               How We Protect Personal Information:-
             </Text>
             <br />
@@ -290,7 +293,7 @@ const PrivacyPolicy = () => {
             the 'contact us' page.
             <br />
             <br />
-            <Text fontWeight={600} fontSize={{md:"24px",base:"21px"}}>
+            <Text fontWeight={600} fontSize={{ md: "24px", base: "21px" }}>
               Updates to Our Privacy Policy:-
             </Text>
             <br />
@@ -321,9 +324,9 @@ const PrivacyPolicy = () => {
       </Box>
       <Container maxW={"container.xl"} mb={5} px={20} centerContent>
         <Image
-         src={
-          require("../assets/001.jpg")
-        }
+          src={
+            require("../assets/001.jpg")
+          }
           w={"container.xl"}
           alt=""
           style={{
@@ -332,8 +335,8 @@ const PrivacyPolicy = () => {
           }}
         />
       </Container>
-      <ScrollToTop/>
-     
+      <ScrollToTop />
+
       {IsMobileView !== "true" && <Footer />}
 
     </>

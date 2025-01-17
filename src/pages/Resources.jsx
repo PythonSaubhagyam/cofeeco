@@ -10,14 +10,17 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import BreadCrumbCom from "../components/BreadCrumbCom";
 import ScrollToTop from "../components/ScrollToTop";
+import MetaTags from "../context/MetaTagsContext";
 
 const Resources = () => {
     const width = useBreakpointValue({ base: "100%", lg: "540" });
     const height = useBreakpointValue({ base: "100%", lg: "359" });
+    const pageUrl = "/resources";
 
     return (
         <>
-            <Navbar />
+      <MetaTags pageUrl={pageUrl} />
+      <Navbar />
             <Container maxW="container.xl">
                 <BreadCrumbCom second={"Resource"} secondUrl={"/resources"} />
             </Container>

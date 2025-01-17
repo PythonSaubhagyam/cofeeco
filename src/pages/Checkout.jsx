@@ -30,6 +30,7 @@ import {
   useParams,
 } from "react-router-dom";
 import Actions from "../components/Actions";
+import MetaTags from "../context/MetaTagsContext";
 
 export default function Checkout({ getDetails }) {
   function onEditClick(id, address) {
@@ -385,11 +386,13 @@ export default function Checkout({ getDetails }) {
     });
     return res;
   }
+  const pageUrl = "/checkout/";
+
   if (location.state !== null) {
     return (
       <>
+        <MetaTags pageUrl={pageUrl} />
         <Navbar />
-
         {loading ? (
           <Center h="75vh">
             <Loader site={true} />
@@ -431,7 +434,7 @@ export default function Checkout({ getDetails }) {
               as="fieldset"
               id="shipping"
               isRequired
-              // disabled={sameAddresses}
+            // disabled={sameAddresses}
             >
               <RadioGroup
                 value={parseInt(formData.billingAddress) || addresses[0].id}
@@ -552,12 +555,12 @@ export default function Checkout({ getDetails }) {
                 <RadioGroup
                   name="delivery-options"
                   value={parseInt(formData.shipping_amt)}
-                  // onChange={(shippingCost) => {
-                  //   setFormData({
-                  //     ...formData,
-                  //     shipping_amt: parseInt(shippingCost),
-                  //   });
-                  // }}
+                // onChange={(shippingCost) => {
+                //   setFormData({
+                //     ...formData,
+                //     shipping_amt: parseInt(shippingCost),
+                //   });
+                // }}
                 >
                   <Flex gap={5} direction="column">
                     {formData.shipping_amt === 0 ? (

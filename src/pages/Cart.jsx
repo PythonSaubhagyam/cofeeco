@@ -40,6 +40,7 @@ import CheckOrSetUDID from "../utils/checkOrSetUDID";
 import checkLogin from "../utils/checkLogin";
 import BreadCrumbCom from "../components/BreadCrumbCom";
 import LoginModal from "../components/LoginModal";
+import MetaTags from "../context/MetaTagsContext";
 
 export default function Cart() {
   const messageRef = useRef(null);
@@ -334,10 +335,13 @@ export default function Cart() {
     // }, 2000);
     // return () => clearTimeout(timer);
   }
+  const pageUrl = "/cart";
 
   const AmountTable = () => {
     return (
       <>
+      <MetaTags pageUrl={pageUrl} />
+
         {cartItems.length > 0 ? (
           <Box
             w={{ md: "25%", base: "320px" }}
