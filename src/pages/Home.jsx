@@ -39,6 +39,7 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 import Testimonials from "../components/testimonials";
 import ProductListSectionHome from "../components/ProductListSectionHome";
 import ScrollToTop from "../components/ScrollToTop";
+import { Helmet } from "react-helmet";
 
 
 
@@ -204,6 +205,14 @@ export default function Home() {
 
   return (
     <>
+    <Helmet>
+        <title>CO FEE CO - Home</title> {/* Set default title */}
+        <meta
+          name="description"
+          content="The COcoa And cofFEE COmpany | Natural & Herbal"
+        />
+        {/* You can add other meta tags for SEO */}
+      </Helmet> 
       {/* {loading === true ? (
         <Center h="100vh" w="100vw" backgroundColor={"bg.500"}>
           <Loader site={true} />
