@@ -41,167 +41,198 @@ import ProductListSectionHome from "../components/ProductListSectionHome";
 import ScrollToTop from "../components/ScrollToTop";
 import { Helmet } from "react-helmet";
 
+import { useDispatch, useSelector } from "react-redux"
+import CountUp from 'react-countup';
+import ScrollTrigger from 'react-scroll-trigger';
+import {
+  initializeAppData,
+} from "../redux/slices/homeapi";
 
 
 export default function Home() {
   const [isFullScreen] = useMediaQuery("(min-width: 768px)");
   const width = useBreakpointValue({ base: "100%", lg: "100%" });
   const height = useBreakpointValue({ base: "300", lg: "400" });
-  const [banners, setBanners] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [isMobile] = useMediaQuery("(max-width: 480px)");
   const [homeData, setHome] = useState({});
   // let [isFull] = useMediaQuery("(max-width:1920px)");
-  const [blogs, setBlogs] = useState([]);
   const [newArrival, setNewArrival] = useState([]);
   const [MustTry, setMustTry] = useState([]);
   const [BestSeller, setBestSeller] = useState([]);
   const [sections, setSections] = useState([]);
   const [aboutSection, setAboutSection] = useState([]);
-  const [certificateSection, setCertificateSection] = useState([]);
   const [licencesSection, setLicencesSection] = useState([]);
-  const [nonGMOSection, setNonGMOSection] = useState([]);
-  const [statisticsSection, setStatisticsSection] = useState([]);
 
-  const [awardsSection, setAwardSection] = useState([]);
-  const [servicesSection, setServicesSection] = useState([]);
-  const [availableSection, setAvailableSection] = useState([]);
   const loginInfo = checkLogin();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const checkOrSetUDIDInfo = CheckOrSetUDID();
   const [showPopup, setShowPopup] = useState(
     sessionStorage.getItem("hasShownPopup")
   );
+  const [countUp, setCountUp] = useState()
   // const [cocoaPower, setCocoaPower] = useState([]);
   const isMobiles = width <= 768;
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const {
+    banners,
+    upperSection,
+    tryOurNewProductSection,
+    mustTry,
+    loader,
+    allTimeBestSellerSection,
+    lowerSection1,
+    blogs,
+    statistics,
+    lowerSection2,
+    hasFetched,
+  } = useSelector((state) => state.home);
+
+  const {
+    ourAboutSection,
+    certificateSection,
+  } = upperSection;
+
+  const {
+    ourLicenceSection,
+    nonGMOSection,
+  } = lowerSection1;
+
+  const {
+    awardsSection,
+    servicesSection,
+    availableSection,
+  } = lowerSection2;
+  
+
   useEffect(() => {
     CheckOrSetUDID();
     // getHomePageData();
-    getBanners();
-    getBlogs();
-    getNewArrival();
-    getMustTry();
-    getBestSeller();
-    getLowerSection();
-    getUpperSectionUpper();
-    getUpperSectionLower();
-    getStatisticsSection();
     if (showPopup === null && !loginInfo.isLoggedIn) {
       setIsLoginModalOpen(true);
     }
   }, []);
 
-  async function getBanners() {
-    setLoading(true);
-    try {
-      const response = await client.get("/ecommerce/banners/?sequence=Upper");
-
-      if (response.data.status === true) {
-        setBanners(response?.data?.banner);
-      }
-
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error("Error fetching data:", error);
+  useEffect(() => {
+    if (!hasFetched) {
+      dispatch(initializeAppData());
     }
-  }
-  async function getBlogs() {
-    const params = {};
-    const response = await client.get("/home/blogs/", {
-      params: params,
-    });
-    if (response.data.status === true) {
-      setBlogs(response.data.blogs);
-    }
-    setLoading(false);
-  }
+  }, [dispatch, hasFetched]);
 
-  async function getNewArrival() {
-    const response = await client.get("newarrival/list");
-    if (response) {
-      setNewArrival(response.data.data);
-    }
-    setLoading(false);
-  }
+  
 
-  async function getMustTry() {
-    const response = await client.get("musttry/list");
-    if (response) {
-      setMustTry(response.data.data);
-    }
-    setLoading(false);
-  }
+  // async function getBanners() {
+  //   setLoading(true);
+  //   try {
+  //     const response = await client.get("/ecommerce/banners/?sequence=Upper");
 
-  async function getBestSeller() {
-    const response = await client.get("bestofalltime/list");
-    if (response) {
+  //     if (response.data.status === true) {
+  //       setBanners(response?.data?.banner);
+  //     }
+
+  //     setLoading(false);
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.error("Error fetching data:", error);
+  //   }
+  // }
+  // async function getBlogs() {
+  //   const params = {};
+  //   const response = await client.get("/home/blogs/", {
+  //     params: params,
+  //   });
+  //   if (response.data.status === true) {
+  //     setBlogs(response.data.blogs);
+  //   }
+  //   setLoading(false);
+  // }
+
+  // async function getNewArrival() {
+  //   const response = await client.get("newarrival/list");
+  //   if (response) {
+  //     setNewArrival(response.data.data);
+  //   }
+  //   setLoading(false);
+  // }
+
+  // async function getMustTry() {
+  //   const response = await client.get("musttry/list");
+  //   if (response) {
+  //     setMustTry(response.data.data);
+  //   }
+  //   setLoading(false);
+  // }
+
+  // async function getBestSeller() {
+  //   const response = await client.get("bestofalltime/list");
+  //   if (response) {
     
-      setBestSeller(response.data.data);
-    }
-    setLoading(false);
-  }
-  async function getLowerSection() {
-    const params = {};
-    const response = await client.get("/lower-section/", {
-      params: params,
-    });
-    if (response.data.status === true) {
-      setSections(response.data.data);
+  //     setBestSeller(response.data.data);
+  //   }
+  //   setLoading(false);
+  // }
+  // async function getLowerSection() {
+  //   const params = {};
+  //   const response = await client.get("/lower-section/", {
+  //     params: params,
+  //   });
+  //   if (response.data.status === true) {
+  //     setSections(response.data.data);
 
-      const ourServicesSection = response.data.data?.filter(
-        (section) => section.id === 2
-      );
-      const availableAtSection = response.data.data?.filter(
-        (section) => section.id === 3
-      );
-      const ourAwardsSection = response.data.data?.filter(
-        (section) => section.id === 1
-      );
+  //     const ourServicesSection = response.data.data?.filter(
+  //       (section) => section.id === 2
+  //     );
+  //     const availableAtSection = response.data.data?.filter(
+  //       (section) => section.id === 3
+  //     );
+  //     const ourAwardsSection = response.data.data?.filter(
+  //       (section) => section.id === 1
+  //     );
 
-      setAwardSection(ourAwardsSection);
-      setServicesSection(ourServicesSection);
-      setAvailableSection(availableAtSection);
-    }
-  }
+  //     setAwardSection(ourAwardsSection);
+  //     setServicesSection(ourServicesSection);
+  //     setAvailableSection(availableAtSection);
+  //   }
+  // }
 
-  async function getStatisticsSection() {
-    const params = {};
-    const response = await client.get("/statistics-section/", {
-      params: params,
-    });
-    if (response.data.status === true) {
-      setStatisticsSection(response?.data?.data);
-    }
-  }
-  const getUpperSectionUpper = async () => {
-    const response = await client.get("/cofeeco-section/?type=upper");
+  // async function getStatisticsSection() {
+  //   const params = {};
+  //   const response = await client.get("/statistics-section/", {
+  //     params: params,
+  //   });
+  //   if (response.data.status === true) {
+  //     setStatisticsSection(response?.data?.data);
+  //   }
+  // }
+  // const getUpperSectionUpper = async () => {
+  //   const response = await client.get("/cofeeco-section/?type=upper");
 
-    if (response.data.status === true) {
-      const about = response.data.data?.filter((section) => section.id === 1);
+  //   if (response.data.status === true) {
+  //     const about = response.data.data?.filter((section) => section.id === 1);
 
-      const certificate = response.data.data?.filter(
-        (section) => section.id === 2
-      );
+  //     const certificate = response.data.data?.filter(
+  //       (section) => section.id === 2
+  //     );
 
-      setAboutSection(about);
-      setCertificateSection(certificate);
-    }
-  };
-  const getUpperSectionLower = async () => {
-    const response = await client.get("/cofeeco-section/?type=lower");
+  //     setAboutSection(about);
+  //     setCertificateSection(certificate);
+  //   }
+  // };
+  // const getUpperSectionLower = async () => {
+  //   const response = await client.get("/cofeeco-section/?type=lower");
 
-    if (response.data.status === true) {
-      const licences = response.data.data?.filter(
-        (section) => section.id === 3
-      );
-      const nonGMO = response.data.data?.filter((section) => section.id === 4);
+  //   if (response.data.status === true) {
+  //     const licences = response.data.data?.filter(
+  //       (section) => section.id === 3
+  //     );
+  //     const nonGMO = response.data.data?.filter((section) => section.id === 4);
 
-      setLicencesSection(licences);
-      setNonGMOSection(nonGMO);
-    }
-  };
+  //     setLicencesSection(licences);
+  //     setNonGMOSection(nonGMO);
+  //   }
+  // };
 
   return (
     <>
@@ -221,15 +252,15 @@ export default function Home() {
         <> */}
       <Navbar />
       <Container maxW={"container.xl"} px={0}>
-        {loading === true ? (
+        {loader === true ? (
           <Skeleton h={489}></Skeleton>
         ) : (
           <Carousel banners={banners?.length > 0 && banners} />
         )}
       </Container>
 
-      {aboutSection?.length > 0 &&
-        aboutSection[0]?.is_visible_on_website === true && (
+      {ourAboutSection?.length > 0 &&
+        ourAboutSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} mb={8} px={0}>
             <Text
               fontSize={{ base: "xl", sm: "2xl", xl: "2xl" }}
@@ -240,7 +271,7 @@ export default function Home() {
               py={4}
               //my={7}
             >
-              {aboutSection[0]?.label}
+              {ourAboutSection[0]?.label}
             </Text>
             <Text
               color={"text.300"}
@@ -250,7 +281,7 @@ export default function Home() {
               whiteSpace={"pre-line"}
               mt={4}
             >
-              {aboutSection[0]?.description}
+              {ourAboutSection[0]?.description}
               <br />
               <br />
             </Text>
@@ -285,29 +316,29 @@ export default function Home() {
           </Container>
         )}
 
-      {newArrival && newArrival?.length > 0 && (
+      {tryOurNewProductSection && tryOurNewProductSection?.length > 0 && (
         <ProductListSectionHome
           title="Try Our New Products"
-          loading={loading}
-          products={newArrival}
+          loader={loader}
+          products={tryOurNewProductSection}
           type={isMobile && "carousal"}
         />
       )}
 
-      {MustTry && MustTry?.length > 0 && (
+      {mustTry && mustTry?.length > 0 && (
         <ProductListSectionHome
           title="Must Try: Co Fee Co Products"
-          loading={loading}
-          products={MustTry}
+          loader={loader}
+          products={mustTry}
           type={isMobile && "carousal"}
         />
       )}
 
-      {BestSeller && BestSeller?.length > 0 && (
+      {allTimeBestSellerSection && allTimeBestSellerSection?.length > 0 && (
         <ProductListSectionHome
           title="All Time Best Sellers"
-          loading={loading}
-          products={BestSeller}
+          loader={loader}
+          products={allTimeBestSellerSection}
           type={isMobile && "carousal"}
         />
       )}
@@ -377,7 +408,7 @@ export default function Home() {
                     src={blog.banner}
                     w="100%"
                     h="300px"
-                    loading="lazy"
+                    loader="lazy"
                     objectFit={"cover"}
                     borderRadius={5}
                     style={{
@@ -418,34 +449,43 @@ export default function Home() {
         </Grid>
       </Container>
 
-      {statisticsSection?.length > 0 &&
-        statisticsSection[0]?.is_visible_on_website === true && (
-          <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
-            <SimpleGrid
-              columns={[2, 3, null, 5]}
-              px={6}
-              maxW={"container.xl"}
-              my={6}
-              backgroundColor={"bg.500"}
-              align="center"
-              spacingX={{ base: "10vw", md: "30px" }}
-              spacingY="40px"
-            >
-              {statisticsSection?.length > 0 &&
-                statisticsSection?.map((data) => (
-                  <Stat>
-                    <StatNumber
-                      color="text.500"
-                      fontSize={{ base: "3xl", md: "3xl" }}
+      {statistics?.length > 0 && (
+        <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
+          <SimpleGrid
+            columns={[2, 3, null, 5]}
+            px={6}
+            maxW={"container.xl"}
+            my={6}
+            backgroundColor={"bg.500"}
+            align="center"
+            spacingX={{ base: "10vw", md: "30px" }}
+            spacingY="40px"
+          >
+            {statistics?.length > 0 &&
+              statistics?.map((data) => (
+                <Stat key={data.id}>
+                  <StatNumber fontSize={{ base: "3xl", md: "3xl" }}>
+                    <ScrollTrigger
+                      onEnter={() => setCountUp(true)}
+                      // onExit={() => setCountUp(false)}
                     >
-                      {data?.value}
-                    </StatNumber>
-                    <StatHelpText color="gray.600">{data?.name}</StatHelpText>
-                  </Stat>
-                ))}
-            </SimpleGrid>
-          </Container>
-        )}
+                      {countUp ? (
+                        <CountUp
+                          start={0}
+                          end={Number(data.value.replace('+', ''))}
+                          duration={2}
+                          delay={0}
+                        />
+                      ) : null}
+                      +
+                      </ScrollTrigger>
+                  </StatNumber>
+                  <StatHelpText color="gray.600">{data?.name}</StatHelpText>
+                </Stat>
+              ))}
+          </SimpleGrid>
+        </Container>
+      )}
       {awardsSection?.length > 0 &&
         awardsSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
