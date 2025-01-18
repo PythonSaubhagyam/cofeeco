@@ -58,12 +58,11 @@ const MetaTags = ({ pageUrl }) => {
 
   return (
     <Helmet>
-      <title>Vama</title>
+      <title>Co FEE CO</title>
       <meta
         name="description"
-        content="Bansi Gir Gauveda is on a mission to serve humanity by offering
-          highly potent Ayurvedic supplements by exploiting synergies of Cow
-          (“Gau” or “Go”) rearing and Ayurveda."
+        content="Co Fee Co is committed to bringing you the very best and most 
+        refreshing coffee and herbs with minimal impact to the environment."
       />
       <meta name="keywords" content="girgauveda,contact us,SOSE Elite" />
     </Helmet>

@@ -240,7 +240,8 @@ export default function Home() {
         <title>CO FEE CO - Home</title> {/* Set default title */}
         <meta
           name="description"
-          content="The COcoa And cofFEE COmpany | Natural & Herbal"
+          content="Co Fee Co is committed to bringing you the very best and most 
+          refreshing coffee and herbs with minimal impact to the environment."
         />
         {/* You can add other meta tags for SEO */}
       </Helmet> 
