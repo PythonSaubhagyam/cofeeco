@@ -81,7 +81,7 @@ const bannerSlice = createSlice({
                 // Organize upperSection data
                 state.upperSection = {
                     ourAboutSection: upperSection.filter((section) => section.id === 1),
-                    ourCertificateSection: upperSection.filter((section) => section.id === 2),
+                    certificateSection: upperSection.filter((section) => section.id === 2),
                 };
 
                 state.tryOurNewProductSection = tryOurNewProductSection;
@@ -90,8 +90,8 @@ const bannerSlice = createSlice({
 
                 // Organize lowerSection1 data
                 state.lowerSection1 = {
-                    skinCareSection: lowerSection1.filter((section) => section.id === 6),
-                    nonGmoSection: lowerSection1.filter((section) => section.id === 7),
+                    ourLicenceSection: lowerSection1.filter((section) => section.id === 3),
+                    nonGmoSection: lowerSection1.filter((section) => section.id === 4),
                 };
 
                 state.blogs = blogs;

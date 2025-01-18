@@ -97,9 +97,8 @@ export default function Home() {
 
   const {
     ourLicenceSection,
-    nonGMOSection,
+    nonGmoSection,
   } = lowerSection1;
-
   const {
     awardsSection,
     servicesSection,
@@ -109,7 +108,6 @@ export default function Home() {
 
   useEffect(() => {
     CheckOrSetUDID();
-    // getHomePageData();
     if (showPopup === null && !loginInfo.isLoggedIn) {
       setIsLoginModalOpen(true);
     }
@@ -123,117 +121,7 @@ export default function Home() {
 
   
 
-  // async function getBanners() {
-  //   setLoading(true);
-  //   try {
-  //     const response = await client.get("/ecommerce/banners/?sequence=Upper");
-
-  //     if (response.data.status === true) {
-  //       setBanners(response?.data?.banner);
-  //     }
-
-  //     setLoading(false);
-  //   } catch (error) {
-  //     setLoading(false);
-  //     console.error("Error fetching data:", error);
-  //   }
-  // }
-  // async function getBlogs() {
-  //   const params = {};
-  //   const response = await client.get("/home/blogs/", {
-  //     params: params,
-  //   });
-  //   if (response.data.status === true) {
-  //     setBlogs(response.data.blogs);
-  //   }
-  //   setLoading(false);
-  // }
-
-  // async function getNewArrival() {
-  //   const response = await client.get("newarrival/list");
-  //   if (response) {
-  //     setNewArrival(response.data.data);
-  //   }
-  //   setLoading(false);
-  // }
-
-  // async function getMustTry() {
-  //   const response = await client.get("musttry/list");
-  //   if (response) {
-  //     setMustTry(response.data.data);
-  //   }
-  //   setLoading(false);
-  // }
-
-  // async function getBestSeller() {
-  //   const response = await client.get("bestofalltime/list");
-  //   if (response) {
-    
-  //     setBestSeller(response.data.data);
-  //   }
-  //   setLoading(false);
-  // }
-  // async function getLowerSection() {
-  //   const params = {};
-  //   const response = await client.get("/lower-section/", {
-  //     params: params,
-  //   });
-  //   if (response.data.status === true) {
-  //     setSections(response.data.data);
-
-  //     const ourServicesSection = response.data.data?.filter(
-  //       (section) => section.id === 2
-  //     );
-  //     const availableAtSection = response.data.data?.filter(
-  //       (section) => section.id === 3
-  //     );
-  //     const ourAwardsSection = response.data.data?.filter(
-  //       (section) => section.id === 1
-  //     );
-
-  //     setAwardSection(ourAwardsSection);
-  //     setServicesSection(ourServicesSection);
-  //     setAvailableSection(availableAtSection);
-  //   }
-  // }
-
-  // async function getStatisticsSection() {
-  //   const params = {};
-  //   const response = await client.get("/statistics-section/", {
-  //     params: params,
-  //   });
-  //   if (response.data.status === true) {
-  //     setStatisticsSection(response?.data?.data);
-  //   }
-  // }
-  // const getUpperSectionUpper = async () => {
-  //   const response = await client.get("/cofeeco-section/?type=upper");
-
-  //   if (response.data.status === true) {
-  //     const about = response.data.data?.filter((section) => section.id === 1);
-
-  //     const certificate = response.data.data?.filter(
-  //       (section) => section.id === 2
-  //     );
-
-  //     setAboutSection(about);
-  //     setCertificateSection(certificate);
-  //   }
-  // };
-  // const getUpperSectionLower = async () => {
-  //   const response = await client.get("/cofeeco-section/?type=lower");
-
-  //   if (response.data.status === true) {
-  //     const licences = response.data.data?.filter(
-  //       (section) => section.id === 3
-  //     );
-  //     const nonGMO = response.data.data?.filter((section) => section.id === 4);
-
-  //     setLicencesSection(licences);
-  //     setNonGMOSection(nonGMO);
-  //   }
-  // };
-
+ 
   return (
     <>
     <Helmet>
@@ -539,8 +427,8 @@ export default function Home() {
           </Container>
         )}
 
-      {licencesSection?.length > 0 &&
-        licencesSection[0]?.is_visible_on_website === true && (
+      {ourLicenceSection?.length > 0 &&
+        ourLicenceSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} px={0} pb={6}>
             <Box
               w="100%"
@@ -556,7 +444,7 @@ export default function Home() {
                 my={5}
                 pb={"10px"}
               >
-                {licencesSection[0]?.label}
+                {ourLicenceSection[0]?.label}
               </Heading>
             </Box>
             <Grid
@@ -571,8 +459,8 @@ export default function Home() {
               alignItems={"center"}
               justifyContent={"center"}
             >
-              {licencesSection[0]?.images?.length > 0 &&
-                licencesSection[0]?.images?.map((data) => (
+              {ourLicenceSection[0]?.images?.length > 0 &&
+                ourLicenceSection[0]?.images?.map((data) => (
                   <GridItem mx={"auto"}>
                     <Image src={data.image} boxSize={{ base: 130, lg: 190 }} />
                   </GridItem>
@@ -580,12 +468,12 @@ export default function Home() {
             </Grid>
           </Container>
         )}
-      {nonGMOSection?.length > 0 &&
-        nonGMOSection[0]?.is_visible_on_website === true && (
+      {nonGmoSection?.length > 0 &&
+        nonGmoSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} pt={5} pb={8} centerContent>
             <Image
               w={{ md: "70%" }}
-              src={nonGMOSection[0]?.image}
+              src={nonGmoSection[0]?.image}
             />
           </Container>
         )}

@@ -768,16 +768,16 @@ export default function ProductDetails() {
             fontSize={{ base: "sm", lg: "md" }}
             type={"carousal"}
           />
-
-          <ProductListSection
-            title="Recently Viewed Products"
-            products={recentlyViewedProducts}
-            justify="center"
-            loading={loading}
-            fontSize={{ base: "sm", lg: "md" }}
-            type={"carousal"}
-          />
-
+          {recentlyViewedProducts.length > 0 && (
+            <ProductListSection
+              title="Recently Viewed Products"
+              products={recentlyViewedProducts}
+              justify="center"
+              loading={loading}
+              fontSize={{ base: "sm", lg: "md" }}
+              type={"carousal"}
+            />
+          )}
           <Modal
             size={"xl"}
             closeOnOverlayClick={false}
