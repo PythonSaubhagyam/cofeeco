@@ -353,12 +353,12 @@ export default function Home() {
             {statistics?.length > 0 &&
               statistics?.map((data) => (
                 <Stat key={data.id}>
-                  <StatNumber fontSize={{ base: "3xl", md: "3xl" }}>
-                    <ScrollTrigger
+                  <StatNumber fontSize={{ base: "3xl", md: "3xl" }} color="brand.500">
+                    {/* <ScrollTrigger
                       onEnter={() => setCountUp(true)}
                       // onExit={() => setCountUp(false)}
-                    >
-                      {countUp ? (
+                    > */}
+                      {/* {countUp ? (
                         <CountUp
                           start={0}
                           end={Number(data.value.replace('+', ''))}
@@ -366,8 +366,9 @@ export default function Home() {
                           delay={0}
                         />
                       ) : null}
-                      +
-                      </ScrollTrigger>
+                      + */}
+                      {/* </ScrollTrigger> */}
+                      {data.value}
                   </StatNumber>
                   <StatHelpText color="gray.600">{data?.name}</StatHelpText>
                 </Stat>
