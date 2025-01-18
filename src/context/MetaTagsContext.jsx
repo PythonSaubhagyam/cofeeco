@@ -49,7 +49,7 @@ const MetaTags = ({ pageUrl }) => {
   if (metaData) {
     return (
       <Helmet>
-        <title>{metaData.title || "Gir Gauveda"}</title>
+        <title>{metaData.title || "CO FEE CO"}</title>
         <meta name="description" content={metaData.description} />
         <meta name="keywords" content={metaData.keywords} />
       </Helmet>
@@ -58,7 +58,7 @@ const MetaTags = ({ pageUrl }) => {
 
   return (
     <Helmet>
-      <title>Co FEE CO</title>
+      <title>CO FEE CO</title>
       <meta
         name="description"
         content="Co Fee Co is committed to bringing you the very best and most 
