@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Loader from "../components/Loader";
+// import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
@@ -40,6 +40,7 @@ import Testimonials from "../components/testimonials";
 import ProductListSectionHome from "../components/ProductListSectionHome";
 import ScrollToTop from "../components/ScrollToTop";
 import { Helmet } from "react-helmet";
+import MetaHome from "../components/MetaHome";
 
 import { useDispatch, useSelector } from "react-redux"
 import CountUp from 'react-countup';
@@ -120,19 +121,18 @@ export default function Home() {
   }, [dispatch, hasFetched]);
 
   
-
- 
+const pageUrl = "/"
   return (
     <>
-    <Helmet>
-        <title>CO FEE CO - Home</title> {/* Set default title */}
+    <MetaHome pageUrl={pageUrl} />
+    {/* <Helmet>
+        <title>CO FEE CO - Home</title> 
         <meta
           name="description"
           content="Co Fee Co is committed to bringing you the very best and most 
           refreshing coffee and herbs with minimal impact to the environment."
         />
-        {/* You can add other meta tags for SEO */}
-      </Helmet> 
+      </Helmet>  */}
       {/* {loading === true ? (
         <Center h="100vh" w="100vw" backgroundColor={"bg.500"}>
           <Loader site={true} />
