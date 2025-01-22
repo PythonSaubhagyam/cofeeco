@@ -34,7 +34,7 @@ import {
 } from "@chakra-ui/react";
 import client from "../setup/axiosClient";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
-import { useNavigate, NavLink as RouterLink } from "react-router-dom";
+import { useNavigate, NavLink as RouterLink, Link as ReactRouterLink } from "react-router-dom";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Testimonials from "../components/testimonials";
 import ProductListSectionHome from "../components/ProductListSectionHome";
@@ -307,7 +307,7 @@ const pageUrl = "/"
                   />
                   <LinkOverlay
                     _hover={{ color: "brand.500" }}
-                    href={`/blogs/${blog.id}/`}
+                    as={ReactRouterLink} to={`/blogs/${blog.id}/`}
                   >
                     <Heading size="sm" fontWeight={500} m={2}>
                       {blog.title}

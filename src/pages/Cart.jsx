@@ -99,11 +99,11 @@ export default function Cart() {
     setLoading(false);
   }
 
-  
+
   useEffect(() => {
     const loginInfo = checkLogin();
     if (loginInfo.isLoggedIn) {
-      getCart(); 
+      getCart();
     }
   }, [checkLogin().isLoggedIn]);
 
@@ -340,7 +340,6 @@ export default function Cart() {
   const AmountTable = () => {
     return (
       <>
-      <MetaTags pageUrl={pageUrl} />
 
         {cartItems.length > 0 ? (
           <Box
@@ -486,6 +485,8 @@ export default function Cart() {
 
   return (
     <>
+      <MetaTags pageUrl={pageUrl} />
+
       <Navbar />
       <Container maxW="container.xl">
         <BreadCrumbCom second={"My Cart"} secondUrl={"/cart"} />
