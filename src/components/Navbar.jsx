@@ -331,14 +331,14 @@ export default function Navbar() {
 
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const dispatch = useDispatch()
-  const { categories, mergedCategories,hasFetched } = useSelector(
-   (state) => state.category
- );
+  const { categories, mergedCategories, hasFetched } = useSelector(
+    (state) => state.category
+  );
 
   useEffect(() => {
     const init = async () => {
       await CheckOrSetUDID();
-    };  
+    };
     init();
   }, []);
 
@@ -420,21 +420,7 @@ export default function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  // const Logout = () => {
-  //   localStorage.clear();
-  //   CartEmitter.emit("updateCartCount", 0);
-  //   CartEmitter.emit("updateProductTotal", 0);
-  //   toast({
-  //     title: "Logged out successfully!",
-  //     status: "success",
-  //     position: "top-right",
-  //     duration: 4000,
-  //     isClosable: true,
-  //   });
 
-  //   navigate("/");
-  //   // CheckOrSetUDID();
-  // };
 
   const Logout = () => {
     // localStorage.clear();
@@ -449,6 +435,7 @@ export default function Navbar() {
       "is_sose_elite_user",
       "id",
       "access",
+      "cart_counter",
     ];
 
     userKeys.forEach((key) => localStorage.removeItem(key));
@@ -462,7 +449,10 @@ export default function Navbar() {
       isClosable: true,
     });
 
-    navigate("/");
+    navigate("/", { replace: true });
+    setTimeout(() => {
+      window.location.reload();
+    });
     // CheckOrSetUDID();
   };
 
@@ -546,6 +536,7 @@ export default function Navbar() {
                           align="center"
                           bg="bg.100"
                           gap={4}
+                          onClick={() => setSearchResults(null)}
                         >
                           <Image src={result.image1} boxSize="10" />
                           <Text
@@ -556,7 +547,7 @@ export default function Navbar() {
                               lg: "75%",
                             }}
                           >
-                            <LinkOverlay as={ReactRouterLink} to={`/products/${result.id}`}>
+                            <LinkOverlay as={ReactRouterLink} to={`/products/${result.id}/${result.name.replace(/\s+/g, "-")}`}>
                               {result.name}
                             </LinkOverlay>
                           </Text>
@@ -624,7 +615,7 @@ export default function Navbar() {
                     _hover={{ bg: "brand.500" }}
                   > */}
                   <MenuItem
-                    onClick={()=>setIsLoginModalOpen(true)}
+                    onClick={() => setIsLoginModalOpen(true)}
                     cursor={"pointer"}
                     _hover={{ textDecoration: "none" }}
                   >
@@ -667,15 +658,15 @@ export default function Navbar() {
                       style={
                         all
                           ? {
-                              background: "#436131",
-                              color: "white",
-                              borderRadius: 5,
-                            }
+                            background: "#436131",
+                            color: "white",
+                            borderRadius: 5,
+                          }
                           : {
-                              background: "white",
-                              color: "black",
-                              borderRadius: 5,
-                            }
+                            background: "white",
+                            color: "black",
+                            borderRadius: 5,
+                          }
                       }
                     >
                       <Box
@@ -716,8 +707,7 @@ export default function Navbar() {
                                     setOpenAccrodion();
                                   } else {
                                     navigate(
-                                      `/shop?page=1&category=${
-                                        section.id
+                                      `/shop?page=1&category=${section.id
                                       }&category_name=${encodeURIComponent(
                                         section?.name
                                       )}`
@@ -783,8 +773,7 @@ export default function Navbar() {
                                                     setOpen(Open);
                                                   } else {
                                                     navigate(
-                                                      `/shop?page=1&category=${
-                                                        subcategory.id
+                                                      `/shop?page=1&category=${subcategory.id
                                                       }&category_name=${encodeURIComponent(
                                                         subcategory?.name
                                                       )}`
@@ -805,8 +794,7 @@ export default function Navbar() {
                                                 <AccordionIcon
                                                   onClick={() =>
                                                     navigate(
-                                                      `/shop?page=1&category=${
-                                                        subcategory.id
+                                                      `/shop?page=1&category=${subcategory.id
                                                       }&category_name=${encodeURIComponent(
                                                         subcategory?.name
                                                       )}`
@@ -842,8 +830,7 @@ export default function Navbar() {
                                                           key={i}
                                                           onClick={() => {
                                                             navigate(
-                                                              `/shop?page=1&category=${
-                                                                children.id
+                                                              `/shop?page=1&category=${children.id
                                                               }&category_name=${encodeURIComponent(
                                                                 children?.name
                                                               )}`
@@ -931,7 +918,7 @@ export default function Navbar() {
           <GridItem
             rowSpan={2}
             colSpan={1}
-            // style={{ borderBottom: "0.5px solid #b7b7b7" }}
+          // style={{ borderBottom: "0.5px solid #b7b7b7" }}
           >
             <Link as={ReactRouterLink} to="/">
               <Image
@@ -946,7 +933,7 @@ export default function Navbar() {
             colSpan={7}
             display={"flex"}
             alignItems={"center"}
-            // style={{ borderBottom: "0.5px solid #b7b7b7" }}
+          // style={{ borderBottom: "0.5px solid #b7b7b7" }}
           >
             <InputGroup size="sm" width={"100%"} mt={3}>
               <Input
@@ -1020,6 +1007,7 @@ export default function Navbar() {
                         borderRadius: 6,
                         cursor: "pointer",
                       }}
+                      onClick={() => setSearchResults(null)}
                     >
                       {/* <Image src={result.image1} boxSize="10" /> */}
                       <Text
@@ -1030,7 +1018,7 @@ export default function Navbar() {
                           lg: "75%",
                         }}
                       >
-                        <LinkOverlay as={ReactRouterLink} to={`/products/${result.id}`}>
+                        <LinkOverlay as={ReactRouterLink} to={`/products/${result.id}/${result.name.replace(/\s+/g, "-")}`}>
                           {result.name}
                         </LinkOverlay>
                       </Text>
@@ -1132,7 +1120,7 @@ export default function Navbar() {
           <GridItem
             colSpan={9}
             display={"flex"}
-            // style={{ borderBottom: "0.5px solid #b7b7b7" }}
+          // style={{ borderBottom: "0.5px solid #b7b7b7" }}
           >
             <Flex
               as={"nav"}
@@ -1187,8 +1175,7 @@ export default function Navbar() {
                           onMouseEnter={() => handleShow1(section.children)}
                           onClick={() =>
                             navigate(
-                              `/shop?category=${
-                                section.id
+                              `/shop?category=${section.id
                               }&category_name=${encodeURIComponent(
                                 section?.name
                               )}`
@@ -1217,8 +1204,7 @@ export default function Navbar() {
                         onMouseEnter={() => handleShowSubMenu(item.children)}
                         onClick={() =>
                           navigate(
-                            `/shop?category=${
-                              item.id
+                            `/shop?category=${item.id
                             }&category_name=${encodeURIComponent(item?.name)}`
                           )
                         }
@@ -1240,8 +1226,7 @@ export default function Navbar() {
                         key={nestedIndex}
                         onClick={() =>
                           navigate(
-                            `/shop?category=${
-                              item.id
+                            `/shop?category=${item.id
                             }&category_name=${encodeURIComponent(item?.name)}`
                           )
                         }

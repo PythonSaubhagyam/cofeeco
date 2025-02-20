@@ -19,7 +19,7 @@ const ProductCardHome = ({ product }) => {
         borderColor="brand.100"
         borderRadius={"lg"}
         onClick={() => {
-          navigate(`/products/${product.product?.id}`),
+          navigate(`/products/${product.product?.id}/${product.product?.name.replace(/\s+/g, "-")}`),
             window.scrollTo({
               top: 0,
               left: 0,
@@ -63,7 +63,7 @@ const ProductCardHome = ({ product }) => {
           </Box>
           <Button
             as={Link}
-            to={`/products/${product.product?.id}`}
+            to={`/products/${product.product?.id}/${product.product?.name.replace(/\s+/g, "-")}`}
             fontSize="sm"
             w={{ base: "100%", lg: "80%" }}
             mx="auto"

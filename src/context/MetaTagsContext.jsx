@@ -64,7 +64,6 @@ const MetaTags = ({ pageUrl }) => {
         content="Co Fee Co is committed to bringing you the very best and most 
         refreshing coffee and herbs with minimal impact to the environment."
       />
-      <meta name="keywords" content="girgauveda,contact us,SOSE Elite" />
     </Helmet>
   );
 };

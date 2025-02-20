@@ -7,8 +7,7 @@ import CarouselWithLinks from "../components/CarouselWithLinks";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import LoginModal from "../components/LoginModal";
 import checkLogin from "../utils/checkLogin";
-
-import ProductListSection from "../components/ProductListSection";
+import BlogSliderHome from "../components/BlogSliderHome"
 import {
   Container,
   Flex,
@@ -71,7 +70,7 @@ export default function Home() {
   const [showPopup, setShowPopup] = useState(
     sessionStorage.getItem("hasShownPopup")
   );
-  const [countUp, setCountUp] = useState()
+  const [countUp, setCountUp] = useState(false)
   // const [cocoaPower, setCocoaPower] = useState([]);
   const isMobiles = width <= 768;
   const navigate = useNavigate();
@@ -274,7 +273,9 @@ const pageUrl = "/"
         products={cocoaPower}
       /> */}
 
-      <Container maxW={"container.xl"}>
+      <BlogSliderHome blogs={blogs} />
+
+      {/* <Container maxW={"container.xl"}>
         <Heading color="brand.500" size="lg" mx="auto" align={"center"} mt={3}>
           BLOGS
         </Heading>
@@ -336,7 +337,7 @@ const pageUrl = "/"
             </GridItem>
           ))}
         </Grid>
-      </Container>
+      </Container> */}
 
       {statistics?.length > 0 && (
         <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
@@ -354,11 +355,11 @@ const pageUrl = "/"
               statistics?.map((data) => (
                 <Stat key={data.id}>
                   <StatNumber fontSize={{ base: "3xl", md: "3xl" }} color="brand.500">
-                    {/* <ScrollTrigger
+                    <ScrollTrigger
                       onEnter={() => setCountUp(true)}
                       // onExit={() => setCountUp(false)}
-                    > */}
-                      {/* {countUp ? (
+                    >
+                      {countUp ? (
                         <CountUp
                           start={0}
                           end={Number(data.value.replace('+', ''))}
@@ -366,9 +367,8 @@ const pageUrl = "/"
                           delay={0}
                         />
                       ) : null}
-                      + */}
-                      {/* </ScrollTrigger> */}
-                      {data.value}
+                      +
+                      </ScrollTrigger>
                   </StatNumber>
                   <StatHelpText color="gray.600">{data?.name}</StatHelpText>
                 </Stat>
