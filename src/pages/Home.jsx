@@ -362,12 +362,13 @@ const pageUrl = "/"
                       {countUp ? (
                         <CountUp
                           start={0}
-                          end={Number(data.value.replace('+', ''))}
+                          end={Number(data.value.replace(/[^\d]/g, ''))}
                           duration={2}
                           delay={0}
                         />
                       ) : null}
-                      +
+                      {data?.name === "Positive Feedback" ? "+%" : data?.name === "Generation of Farmers" ? "th" : "+"}
+
                       </ScrollTrigger>
                   </StatNumber>
                   <StatHelpText color="gray.600">{data?.name}</StatHelpText>
