@@ -57,19 +57,13 @@ const RelatedOther = () => {
     }, [productId]);
 
     
-    const allowedWebsites = products.product_websites || []; 
-
 
     const filteredOtherProducts = otherProducts.filter(
-        (product) => JSON.stringify(product.product_websites.sort())
-            === JSON.stringify(allowedWebsites.sort())
+        (product) => product.product_websites?.includes(7)
     );
     const filteredRelatedProducts = relatedProducts.filter(
-        (product) => JSON.stringify(product.product_websites.sort())
-            === JSON.stringify(allowedWebsites.sort())
+        (product) => product.product_websites?.includes(7)
     );
-
-    console.log("products",products.product_website)
 
     
 
