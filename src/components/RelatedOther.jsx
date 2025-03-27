@@ -56,13 +56,13 @@ const RelatedOther = () => {
         // getProducts();
     }, [productId]);
 
-    
+    const SITE_ID = 7;
 
     const filteredOtherProducts = otherProducts.filter(
-        (product) => product.product_websites?.includes(7)
+        (product) => product.product_websites?.includes(SITE_ID)
     );
     const filteredRelatedProducts = relatedProducts.filter(
-        (product) => product.product_websites?.includes(7)
+        (product) => product.product_websites?.includes(SITE_ID)
     );
 
     
