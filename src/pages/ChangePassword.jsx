@@ -16,12 +16,15 @@ import checkOrSetUDID from "../utils/checkOrSetUDID";
 import client from "../setup/axiosClient";
 import LoginModal from "../components/LoginModal";
 import MetaTags from "../context/MetaTagsContext";
+import Captcha from "../components/Captcha";
 
 export default function ChangePassword() {
-  const [currentPassword, setCurrentPassword] = useState(null);
+  const [currentPassword, setCurrentPassword] = useState(null)
+  const [loading, setisLoading] = useState(false);
   const [newPassword, setNewPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
   const toast = useToast();
   const loginInfo = checkLogin();
   const navigate = useNavigate();
@@ -125,7 +128,8 @@ export default function ChangePassword() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </FormControl>
-            <Button w={"100%"} colorScheme="brand" type="submit">
+            <Captcha onVerify={setCaptchaVerified} />
+            <Button w={"100%"} colorScheme="brand" type="submit" isDisabled={!captchaVerified} loadingText="Changing Password" isLoading={loading}>
               Change Password
             </Button>
           </Stack>
