@@ -463,9 +463,9 @@ export default function Navbar() {
           <Image
             // width="100px"
             // height="50px"
-            boxSize="130px"
+            boxSize="120px"
             objectFit="contain"
-            src="/cofeeco_logo.jpg"
+            src="/cofeeco_logo.png"
             alt="SOSE Logo"
           />
         </Link>
@@ -638,9 +638,9 @@ export default function Navbar() {
             <DrawerHeader as={Flex} justify="center">
               <Link as={ReactRouterLink} to="/">
                 <Image
-                  boxSize="105px"
+                  boxSize="120px"
                   objectFit="contain"
-                  src="/cofeeco_logo.jpg"
+                  src="/cofeeco_logo.png"
                   alt="SOSE Logo"
                 />
               </Link>
@@ -922,9 +922,9 @@ export default function Navbar() {
           >
             <Link as={ReactRouterLink} to="/">
               <Image
-                boxSize="100px"
+                boxSize="120px"
                 objectFit="contain"
-                src="/cofeeco_logo.jpg"
+                src="/cofeeco_logo.png"
                 alt="SOSE Logo"
               />
             </Link>
