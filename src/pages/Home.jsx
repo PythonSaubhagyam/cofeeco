@@ -104,7 +104,7 @@ export default function Home() {
     servicesSection,
     availableSection,
   } = lowerSection2;
-  
+
 
   useEffect(() => {
     CheckOrSetUDID();
@@ -119,12 +119,12 @@ export default function Home() {
     }
   }, [dispatch, hasFetched]);
 
-  
-const pageUrl = "/"
+
+  const pageUrl = "/"
   return (
     <>
-    <MetaHome pageUrl={pageUrl} />
-    {/* <Helmet>
+      <MetaHome pageUrl={pageUrl} />
+      {/* <Helmet>
         <title>CO FEE CO - Home</title> 
         <meta
           name="description"
@@ -151,13 +151,14 @@ const pageUrl = "/"
         ourAboutSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} mb={8} px={0}>
             <Text
+              as={"h1"}
               fontSize={{ base: "xl", sm: "2xl", xl: "2xl" }}
               fontWeight={500}
               bgColor={"bg.500"}
               textAlign={{ base: "center", md: "start" }}
               px={{ base: 2, md: 8 }}
               py={4}
-              //my={7}
+            //my={7}
             >
               {ourAboutSection[0]?.label}
             </Text>
@@ -230,114 +231,9 @@ const pageUrl = "/"
           type={isMobile && "carousal"}
         />
       )}
-      {/* <Container mb={5} px={0} maxW={"container.xl"} >
-       
-         <Text
-          fontSize={{ base: "xl", sm: "2xl", xl: "2xl" }}
-          fontWeight={500}
-          bgColor={"bg.500"}
-          textAlign={{ base: "center", md: "start" }}
-          px={{ base: 2, md: 8 }}
-          py={4}
-          my={7}
-        >
-          COCOA Product
-        </Text>
-        <Grid
-          templateColumns={{
-            base: "repeat(1, 1fr)",
-            md: "repeat(2, 1fr)",
-            lg: "repeat(4, 1fr)",
-          }}
-          gap={4}
-          my={6}
-          px={{ base: 7, md: 15, xl: 20 }}
-        >
-          {cocoaPower.map((data) => (
-            <GridItem>
-              <Flex flexDirection={"column"} gap={3} alignItems={"center"}>
-                <Image src={data.image1} />
-                <Text fontSize={"xl"} color={"text.300"} fontWeight={500}>
-                  {data.title}
-                </Text>
-                <Image w={"80%"} src={require("../assets/home/buy now right.png")} />
-              </Flex>
-            </GridItem>
-          ))}
-        </Grid>
-      </Container> */}
 
-      {/* <ProductListSection
-        title="COCOA Products"
-        loading={loading}
-        products={cocoaPower}
-      /> */}
 
       <BlogSliderHome blogs={blogs} />
-
-      {/* <Container maxW={"container.xl"}>
-        <Heading color="brand.500" size="lg" mx="auto" align={"center"} mt={3}>
-          BLOGS
-        </Heading>
-
-        <Grid
-          templateColumns={{
-            base: "repeat(1,1fr)",
-            md: "repeat(2,1fr)",
-            lg: "repeat(4,1fr)",
-          }}
-          px={2}
-          py={3}
-          spacing="40px"
-        >
-          {blogs?.slice(0, 8).map((blog) => (
-            <GridItem key={blog.id} m={4}>
-              <Card>
-                <LinkBox h={400}>
-                  <Image
-                    src={blog.banner}
-                    w="100%"
-                    h="300px"
-                    loader="lazy"
-                    objectFit={"cover"}
-                    borderRadius={5}
-                    style={{
-                      opacity: 1,
-                      transition: "opacity 0.7s", // Note the corrected syntax here
-                    }}
-                  />
-                  <LinkOverlay
-                    _hover={{ color: "brand.500" }}
-                    as={ReactRouterLink} to={`/blogs/${blog.id}/`}
-                  >
-                    <Heading size="sm" fontWeight={500} m={2}>
-                      {blog.title}
-                    </Heading>
-                  </LinkOverlay>
-                </LinkBox>
-                <Flex m={2} justifyContent={"space-between"}>
-                  <Text fontSize={"sm"} color="gray.500">
-                    {new Intl.DateTimeFormat("en-CA", {
-                      dateStyle: "long",
-                      timeZone: "Asia/Kolkata",
-                    }).format(new Date(blog.published_at))}
-                  </Text>
-                  <Text
-                    fontSize={"sm"}
-                    fontWeight={600}
-                    color={"brand.500"}
-                    onClick={() => navigate(`/blogs/${blog.id}/`)}
-                    cursor={"pointer"}
-                  >
-                    Read more
-                    <ChevronRightIcon />
-                  </Text>
-                </Flex>
-              </Card>
-            </GridItem>
-          ))}
-        </Grid>
-      </Container> */}
 
       {statistics?.length > 0 && (
         <Container backgroundColor={"bg.500"} maxW={"container.xl"} py={2}>
@@ -357,7 +253,7 @@ const pageUrl = "/"
                   <StatNumber fontSize={{ base: "3xl", md: "3xl" }} color="brand.500">
                     <ScrollTrigger
                       onEnter={() => setCountUp(true)}
-                      // onExit={() => setCountUp(false)}
+                    // onExit={() => setCountUp(false)}
                     >
                       {countUp ? (
                         <CountUp
@@ -369,7 +265,7 @@ const pageUrl = "/"
                       ) : null}
                       {data?.name === "Positive Feedback" ? "+%" : data?.name === "Generation of Farmers" ? "th" : "+"}
 
-                      </ScrollTrigger>
+                    </ScrollTrigger>
                   </StatNumber>
                   <StatHelpText color="gray.600">{data?.name}</StatHelpText>
                 </Stat>
@@ -381,6 +277,7 @@ const pageUrl = "/"
         awardsSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
             <Heading
+              as={"h1"}
               color="brand.500"
               fontSize={{ md: 33, base: 20 }}
               mx="auto"
@@ -439,6 +336,7 @@ const pageUrl = "/"
               backgroundRepeat={"no-repeat"}
             >
               <Heading
+                as={"h1"}
                 color="brand.500"
                 fontSize={{ md: 33, base: 22 }}
                 mx="auto"
@@ -484,6 +382,7 @@ const pageUrl = "/"
         servicesSection[0]?.is_visible_on_website === true && (
           <Container maxW={{ base: "100vw", md: "container.xl" }}>
             <Heading
+              as={"h1"}
               color="brand.500"
               fontSize={{ md: 33, base: 20 }}
               mx="auto"
@@ -515,6 +414,7 @@ const pageUrl = "/"
         availableSection[0]?.is_visible_on_website === true && (
           <Container maxW={"container.xl"} mb={5} px={0} centerContent>
             <Heading
+              as={"h1"}
               color="brand.500"
               fontSize={{ md: 33, base: 22 }}
               mx="auto"
@@ -539,7 +439,7 @@ const pageUrl = "/"
             />
           </Container>
         )}
-         {!checkLogin().isLoggedIn && (
+      {!checkLogin().isLoggedIn && (
         <LoginModal
           isOpen={isLoginModalOpen}
           onClose={() => setIsLoginModalOpen(false)}

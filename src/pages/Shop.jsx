@@ -23,6 +23,8 @@ import AddOrRemoveInWishlist from "../utils/addOrRemoveInWishlist";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
 import checkLogin from "../utils/checkLogin";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { fetchCategories } from "../redux/slices/categoryApi";
 import {
   Pagination,
   usePagination,
@@ -43,7 +45,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function Shop() {
   const [totalPages, setTotalPages] = useState();
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -81,11 +84,13 @@ export default function Shop() {
     initialState: { currentPage: 1 },
   });
   const category_name = new URLSearchParams(search).get("category_name");
-//Selector Redux
-const dispatch = useDispatch();
-const { tagsArray, productFoamsArray, brandArray } = useSelector(
-  (state) => state.shop
-);
+  //Selector Redux
+  const dispatch = useDispatch();
+  const { tagsArray, productFoamsArray, brandArray, hasFetched } = useSelector(
+    (state) => state.shop
+  );
+  const { categories } = useSelector((state) => state.category);
+
   let headers = { visitor: CheckOrSetUDID()?.visitor_id };
   const loginInfo = checkLogin();
   if (loginInfo.isLoggedIn === true) {
@@ -103,9 +108,18 @@ const { tagsArray, productFoamsArray, brandArray } = useSelector(
   }, [page, categoryId, sortKey, prod_search, brand, tagWise, productFoam]);
 
   useEffect(() => {
-    dispatch(fetchFilters());
-  }, [dispatch]);
+    if (!hasFetched) {
+      dispatch(fetchFilters());
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, hasFetched]);
 
+  useEffect(() => {
+    if (categories?.length > 0 && categoryId) {
+      const selectedCategory = categories.find(cat => cat.id === parseInt(categoryId));
+      setCategory(selectedCategory);
+    }
+  }, [categories, categoryId]);
   async function getProducts(nextPage) {
     setLoading(true);
     try {
@@ -421,7 +435,25 @@ const { tagsArray, productFoamsArray, brandArray } = useSelector(
 
   return (
     <>
-      <MetaTags pageUrl={pageUrl} />
+      {(brand_name || category_name || category?.metatitle) ? (
+        <Helmet>
+          <title>{category?.metatitle || brand_name || category_name || "Shop – Discover Amazing Products at Great Prices"}</title>
+          <meta name="description" content={category?.metadescription || "Explore our online shop for premium products at unbeatable prices. Shop now and enjoy fast shipping and easy returns on all your favorite items!"} />
+          <meta name="keywords" content={category?.metakeywords || "shop, online shop, shopping, buy online, e-commerce, Ethical & Natural Products, Organic Products,shopping website,beauty products,Gift shop"} />
+
+          <meta property="og:title" content={category?.metatitle} />
+          <meta property="og:description" content={category?.metadescription} />
+          <meta property="product:price:currency" content="INR" />
+          <meta property="product:rating:average" content={"⭐⭐⭐⭐"} />
+          <meta property="product:availability" content="in stock" />
+          <meta property="og:Delivery" content="4-7 day delivery" />
+          <meta property="og:image" content={category?.web_image} />
+          <meta property="og:url" content={window.location.href} />
+
+        </Helmet>
+      ) : (
+        <MetaTags pageUrl={pageUrl} />
+      )}
 
       <Navbar />
       <Container maxW="container.xl">
@@ -675,10 +707,12 @@ const { tagsArray, productFoamsArray, brandArray } = useSelector(
               ) : (
                 <>
                   <Image
-                    w="100%"
-                    h="100%"
-                    display={displayBanners ? "block" : "none"}
-                    src={banners?.bannerWeb}
+                    w={isMobile ? "100%" : "88%"}
+                    maxH="220px"
+                    borderRadius="md"
+                    objectFit="cover"
+                    display={category?.web_image ? "block" : "none"}
+                    src={category?.web_image}
                   />
                   {products !== null &&
                     products.map(
