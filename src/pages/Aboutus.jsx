@@ -20,7 +20,10 @@ const AboutUs = () => {
         <BreadCrumbCom second={"About Us"} secondUrl={"/about-us"} />{" "}
       </Container>
       <Container maxW={"container.xl"} mb={4} px={0} centerContent>
-        <Image src={require("../assets/aboutus/about_us.jpg")} width="100%" />
+          <Image
+          src="https://forntend-bucket.s3.ap-south-1.amazonaws.com/sose/images/aboutUs.jpg"
+          alt="About Us Banner"
+        />
         <Flex flexDirection={"column"} gap={3} px={{ md: "10%", base: 10 }} py={10}>
           <Box
             fontWeight={"600"}
@@ -83,36 +86,7 @@ const AboutUs = () => {
 
         </Flex>
         <hr />
-        <Box
-          w="100%"
-          backgroundSize="100%"
-          backgroundPosition="50% 100%"
-          backgroundRepeat={"no-repeat"}
-        >
-          <Heading
-            color="brand.500"
-            size="lg"
-            mx="auto"
-            align={"center"}
-            my={"5"}
-            pb={"10px"}
-          >
-            AVAILABLE AT
-          </Heading>
-        </Box>
-        <Container maxW={"container.xl"} mb={5} centerContent>
-          <Image
-            src={
-              require("../assets/001.jpg")
-            }
-            w={"container.xl"}
-            alt=""
-            style={{
-              opacity: 1,
-              transition: "opacity 0.7s", // Note the corrected syntax here
-            }}
-          />
-        </Container>
+        
       </Container>
       <ScrollToTop />
       {IsMobileView !== "true" && <Footer />}

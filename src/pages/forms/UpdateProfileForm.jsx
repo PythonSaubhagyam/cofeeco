@@ -8,8 +8,6 @@ import {
   Input,
   Stack,
   HStack,
-  // Avatar,
-  // Center,
   Box,
   useToast,
 } from "@chakra-ui/react";
@@ -18,8 +16,8 @@ import client from "../../setup/axiosClient";
 import checkLogin from "../../utils/checkLogin";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { useDayzed } from "dayzed";
 import MetaTags from "../../context/MetaTagsContext";
+
 
 export default function UpdateProfileForm() {
   const location = useLocation();
@@ -36,64 +34,6 @@ export default function UpdateProfileForm() {
   const toast = useToast();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   try {
-  //     async function getdetails() {
-  //       const response = await client.get(`/user/profile/${profileId}`, {
-  //         headers: { Authorization: `token ${loginInfo.token}` },
-  //       });
-  //       if (response.data.status) {
-  //         setUserDetails(response.data.data);
-  //       } else {
-  //         toast({
-  //           title: "There was error loading user details",
-  //           description: "Please reload the page..",
-  //           position: "top-right",
-  //           status: "error",
-  //           duration: 5000,
-  //           isClosable: true,
-  //         });
-  //       }
-  //     }
-  //     getdetails();
-  //     async function updatedetails(data) {
-  //       const response = await client.patch(
-  //         `/user/profile/${profileId?.id}`,
-  //         { ...data },
-  //         {
-  //           headers: { Authorization: `token ${loginInfo.token}` },
-  //         }
-  //       );
-  //       if (response.data.status) {
-  //         toast({
-  //           title: "Updated successful!",
-  //           position: "top-right",
-  //           status: "success",
-  //           duration: 2000,
-  //           isClosable: true,
-  //         });
-  //         navigate(`/user/profile`, { replace: true });
-  //       } else {
-  //         toast({
-  //           title: `${response.data.non_field_errors}`,
-  //           position: "top-right",
-  //           status: "error",
-  //           duration: 5000,
-  //           isClosable: true,
-  //         });
-  //       }
-  //     }
-  //     updatedetails();
-  //   } catch (error) {
-  //     toast({
-  //       title: `${error.response.data[0]}`,
-  //       position: "top-right",
-  //       status: "error",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // }, []);
   async function updateDetails(data) {
     try {
       console.log(formData?.mobile_no.length)
@@ -151,10 +91,10 @@ export default function UpdateProfileForm() {
     await updateDetails(formData);
   };
   const pageUrl = "/profile/edit";
+
   return (
     <>
       <MetaTags pageUrl={pageUrl} />
-
       <Navbar />
       <Flex
         as={"form"}

@@ -48,8 +48,6 @@ import AddToCart from "../utils/addToCart";
 import AddOrRemoveInWishlist from "../utils/addOrRemoveInWishlist";
 import CheckOrSetUDID from "../utils/checkOrSetUDID";
 import checkLogin from "../utils/checkLogin";
-import ProductCarousel from "../components/ProductCarousel";
-import ProductListSection from "../components/ProductListSection";
 import dompurify from "dompurify";
 import Loader from "../components/Loader";
 import BreadCrumbCom from "../components/BreadCrumbCom";

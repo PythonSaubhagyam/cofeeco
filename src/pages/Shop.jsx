@@ -3,7 +3,6 @@ import client from "../setup/axiosClient";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import CategoryTree from "../components/CategoryTree";
 // import CategoryAccessTree from "../components/CategoryAccessTree";
 import ScrollToTop from "../components/ScrollToTop";
 import ShopProductCard from "../components/ShopProductCard";
@@ -638,7 +637,6 @@ export default function Shop() {
                   options={productFoamsArray}
                 ></Select>
               </Box>
-              {/* {!isMobile && <CategoryTree categories={categories} />} */}
             </>
             {/* )} */}
           </Flex>
